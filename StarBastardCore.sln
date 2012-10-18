@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarBastardCore.Website", "StarBastardCore.Website\StarBastardCore.Website.csproj", "{263EB4C2-AACE-471F-AAB6-1D9A6EC371FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarBastardCore.Website.Tests", "StarBastardCore.Website.Tests\StarBastardCore.Website.Tests.csproj", "{376973A3-D00C-4019-A384-86143033D7D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{263EB4C2-AACE-471F-AAB6-1D9A6EC371FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{263EB4C2-AACE-471F-AAB6-1D9A6EC371FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{263EB4C2-AACE-471F-AAB6-1D9A6EC371FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{263EB4C2-AACE-471F-AAB6-1D9A6EC371FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{376973A3-D00C-4019-A384-86143033D7D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{376973A3-D00C-4019-A384-86143033D7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{376973A3-D00C-4019-A384-86143033D7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{376973A3-D00C-4019-A384-86143033D7D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

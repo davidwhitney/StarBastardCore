@@ -1,0 +1,11 @@
+/*.suo
+/_ReSharper.StarBastardCore.Website
+/StarBastardCore.Website/obj
+/StarBastardCore.Website/bin
+/StarBastardCore.Website.Tests/obj
+/StarBastardCore.Website.Tests/bin
+/StarBastardCore.Website/App_Data/aspnet-StarBastardCore.Website-20120916153828.mdf
+/StarBastardCore.Website/App_Data/aspnet-StarBastardCore.Website-20120916153828_log.ldf
+/_ReSharper.StarBastardCore
+/StarBastardCore.Website\App_Data/aspnet-StarBastardCore.mdf
+/StarBastardCore.Website\App_Data/aspnet-StarBastardCore_log.ldf

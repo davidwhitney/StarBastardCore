@@ -1,0 +1,123 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="game/gameplay/gamecontext.js"></script>
+    <script type="text/javascript" src="game/gameplay/player.js"></script>
+    <script type="text/javascript" src="game/gameplay/playerResources.js"></script>
+    <script type="text/javascript" src="game/gameplay/turn.js"></script>
+    <script type="text/javascript" src="game/gameplay/actions.js"></script>
+    <script type="text/javascript" src="game/buildings/buildings.js"></script>
+    <script type="text/javascript" src="game/fleet/starships.js"></script>
+    <script type="text/javascript" src="game/systems/system.js"></script>
+    <script type="text/javascript" src="game/systems/names.js"></script>
+    <script type="text/javascript" src="game/systems/systemGenerator.js"></script>
+    <script type="text/javascript" src="game/renderers/tooltip.js"></script>
+    <script type="text/javascript" src="game/renderers/detail-view.js"></script>
+    <script type="text/javascript" src="game/renderers/player-area.js"></script>
+    <script type="text/javascript" src="game/renderers/game-world.js"></script>
+    <script type="text/javascript" src="game/ui/ui.core.js"></script>
+    <script type="text/javascript" src="game/startup/global.js"></script>
+
+    <link rel="stylesheet" href="core.css" type="text/css" />
+
+    <script>
+         $(document).ready(function(){
+
+            $('#splash').click(function(){
+                $('#splash').slideUp('slow', function(){
+                    newGame();
+                    $('#gameplayarea').fadeIn();
+                });
+            });
+
+         });
+    </script>
+</head>
+<body>
+<div id="splash">
+    <div id="welcome-help">
+        <h1>Welcome to StarBastard</h1>
+        <div>
+            <p>Start your new game now!</p>
+            <p><button class="start-turn">Start game</button></p>
+        </div>
+    </div>
+</div>
+<div id="gameplayarea">
+    <div id="gameboard" class="center">
+        <div id="systems"></div>
+    </div>
+    <div id="central-column">
+        <div id="zoomed-in" class="center" style="display: none;">
+            <h1 id="zoomed-system-name"></h1>
+            <div id="zoomed-keystats">
+                <span id="zoomed-number-of-buildings-built" class="keystat"></span>/
+                <span id="zoomed-number-of-buildings-cap"></span>
+                <span id="zoomed-number-of-armies-in-battlefield" class="keystat"></span>
+                <span id="zoomed-number-of-ships-in-orbit" class="keystat"></span>
+                <span id="zoomed-number-of-enemy-ships-in-orbit" class="keystat"></span>
+            </div>
+            <div style="clear: both;"></div>
+            <div id="zoomed-occupier">
+                <h2>Occupier</h2>
+                <p>Player <span id="zoomed-occupier-id"></span></p>
+            </div>
+            <div id="zoomed-orbit">
+                <h2>Orbit</h2>
+                <div>
+                    <div id="zoomed-orbit-ships"></div>
+                </div>
+            </div>
+            <div id="zoomed-battlefield">
+                <h2>Battlefield</h2>
+            </div>
+            <div id="zoomed-city">
+                <h2>City</h2>
+                <div>
+                    <div id="zoomed-city-items"></div>
+                </div>
+            </div>
+            <div id="zoomed-income">
+                <h2>Income</h2>
+                <div>
+                    Ore  income: <span id="zoomed-ore-income"></span><br/>
+                    Food income: <span id="zoomed-food-income"></span><br/>
+                    Tech income: <span id="zoomed-tech-income"></span><br/>
+                </div>
+            </div>
+            <div style="padding-top: 25px;">
+                <button class="switch-to-map">Close</button>
+            </div>
+        </div>
+    </div>
+    <div id="player">
+        <h1 id="activePlayerName"></h1>
+        <div>
+            Ore  income: <span id="player-ore-income"></span><br/>
+            Food income: <span id="player-food-income"></span><br/>
+            Tech income: <span id="player-tech-income"></span><br/>
+        </div>
+        <div>
+            <button class="build-farm">Build farm</button><br/>
+            <button class="build-mine">Build mine</button><br/>
+            <button class="build-sciencelab">Build sciencelab</button><br/>
+            <button class="build-spaceport">Build spaceprt</button><br/>
+        </div>
+        <div>
+            <h2>Actions</h2>
+            <div id="player-actionqueue"></div>
+        </div>
+        <div>
+            <button class="start-turn">Next Turn</button><br/>
+            Round: <span class="round-number"></span><br/>
+            Player: <span class="player-number"></span><br/>
+        </div>
+    </div>
+</div>
+
+
+<div style="clear:both;"></div>
+<div id="systemsSummary"></div>
+</body>
+</html>
