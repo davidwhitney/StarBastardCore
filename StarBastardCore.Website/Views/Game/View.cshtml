@@ -13,12 +13,12 @@
 <h2>Viewing your game</h2>
 
 
-<div id="gameplayarea">
-    <div id="gameboard" class="center">
+<div id="gameplayarea" class="row clearfix">
+    <div id="gameboard" class="span5">
         <div id="systems"></div>
     </div>
-    <div id="central-column">
-        <div id="zoomed-in" class="center" style="display: none;">
+    <div id="central-column" class="span4">
+        <div id="zoomed-in" style="display: none;">
             <h1 id="zoomed-system-name"></h1>
             <div id="zoomed-keystats">
                 <span id="zoomed-number-of-buildings-built" class="keystat"></span>/
@@ -60,19 +60,25 @@
             </div>
         </div>
     </div>
-    <div id="player">
+    <div id="player" class="span2">
         <h1 id="activePlayerName"></h1>
         <div>
             Ore  income: <span id="player-ore-income"></span><br/>
             Food income: <span id="player-food-income"></span><br/>
             Tech income: <span id="player-tech-income"></span><br/>
         </div>
-        <div>
-            <button class="build-farm">Build farm</button><br/>
-            <button class="build-mine">Build mine</button><br/>
-            <button class="build-sciencelab">Build sciencelab</button><br/>
-            <button class="build-spaceport">Build spaceprt</button><br/>
-        </div>
+            
+            <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    Build <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <a href="#" class="build-farm">Build farm</a>
+                    <a href="#" class="build-mine">Build mine</a>
+                    <a href="#" class="build-sciencelab">Build sciencelab</a>
+                    <a href="#" class="build-spaceport">Build spaceprt</a>
+                </ul>
+            </div>
         <div>
             <h2>Actions</h2>
             <div id="player-actionqueue"></div>
@@ -87,6 +93,7 @@
 
 
 <div style="clear:both;"></div>
+<div class="clearfix"></div>
 <div id="systemsSummary"></div>
 
 @section scripts {
