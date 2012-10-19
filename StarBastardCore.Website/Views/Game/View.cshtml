@@ -1,6 +1,123 @@
-﻿@model dynamic
+﻿@using Newtonsoft.Json
+@model StarBastardCore.Website.Controllers.Game
 @{
     ViewBag.Title = "title";
 }
 
-<h2>title</h2>
+@{
+
+    var json = JsonConvert.SerializeObject(Model);
+}
+
+
+<h2>Viewing your game</h2>
+
+
+<div id="gameplayarea">
+    <div id="gameboard" class="center">
+        <div id="systems"></div>
+    </div>
+    <div id="central-column">
+        <div id="zoomed-in" class="center" style="display: none;">
+            <h1 id="zoomed-system-name"></h1>
+            <div id="zoomed-keystats">
+                <span id="zoomed-number-of-buildings-built" class="keystat"></span>/
+                <span id="zoomed-number-of-buildings-cap"></span>
+                <span id="zoomed-number-of-armies-in-battlefield" class="keystat"></span>
+                <span id="zoomed-number-of-ships-in-orbit" class="keystat"></span>
+                <span id="zoomed-number-of-enemy-ships-in-orbit" class="keystat"></span>
+            </div>
+            <div style="clear: both;"></div>
+            <div id="zoomed-occupier">
+                <h2>Occupier</h2>
+                <p>Player <span id="zoomed-occupier-id"></span></p>
+            </div>
+            <div id="zoomed-orbit">
+                <h2>Orbit</h2>
+                <div>
+                    <div id="zoomed-orbit-ships"></div>
+                </div>
+            </div>
+            <div id="zoomed-battlefield">
+                <h2>Battlefield</h2>
+            </div>
+            <div id="zoomed-city">
+                <h2>City</h2>
+                <div>
+                    <div id="zoomed-city-items"></div>
+                </div>
+            </div>
+            <div id="zoomed-income">
+                <h2>Income</h2>
+                <div>
+                    Ore  income: <span id="zoomed-ore-income"></span><br/>
+                    Food income: <span id="zoomed-food-income"></span><br/>
+                    Tech income: <span id="zoomed-tech-income"></span><br/>
+                </div>
+            </div>
+            <div style="padding-top: 25px;">
+                <button class="switch-to-map">Close</button>
+            </div>
+        </div>
+    </div>
+    <div id="player">
+        <h1 id="activePlayerName"></h1>
+        <div>
+            Ore  income: <span id="player-ore-income"></span><br/>
+            Food income: <span id="player-food-income"></span><br/>
+            Tech income: <span id="player-tech-income"></span><br/>
+        </div>
+        <div>
+            <button class="build-farm">Build farm</button><br/>
+            <button class="build-mine">Build mine</button><br/>
+            <button class="build-sciencelab">Build sciencelab</button><br/>
+            <button class="build-spaceport">Build spaceprt</button><br/>
+        </div>
+        <div>
+            <h2>Actions</h2>
+            <div id="player-actionqueue"></div>
+        </div>
+        <div>
+            <button class="start-turn">Next Turn</button><br/>
+            Round: <span class="round-number"></span><br/>
+            Player: <span class="player-number"></span><br/>
+        </div>
+    </div>
+</div>
+
+
+<div style="clear:both;"></div>
+<div id="systemsSummary"></div>
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/game-renderer")
+
+    <script type="text/javascript">
+        $(function() {
+            
+            var $playerRenderer = new playerAreaRender();
+            var $detailRenderer = new detailedViewRenderer();
+            var $worldRenderer = new gameWorldRenderer();
+            
+            var gameboard = @(Html.Raw(json));
+            var context = new gameContext(gameboard);
+            
+            window.gameboard = gameboard.Systems;
+            window.context = context;
+            
+            $worldRenderer.render(context, $("#systems"));
+
+            var ui = new uiComponents(function(context) {
+                render(context);
+            });
+
+            ui.bindToUi();
+            
+            function render(ctx){
+                //$playerRenderer.render(context, context.currentPlayer());
+                $detailRenderer.render(ctx, window.context.getSelectedSystem());
+            }
+        });
+    </script>
+}

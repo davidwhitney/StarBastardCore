@@ -1,0 +1,107 @@
+﻿.center
+{
+    margin-left:auto;
+    margin-right:auto;
+    height: 100%;
+    width:80%;
+}
+#splash{
+    z-index:100000;
+    position: absolute;
+    width: 1280px;
+    height: 94%;
+    float:left;
+    padding: 15px;
+    background-image: url(assets/backgrounds/splash.jpg);
+}
+#gameplayarea{
+    z-index: 100;
+    position: absolute;
+    width: 1280px;
+    height: 94%;
+    float:left;
+    padding: 15px;
+    background-image: url(assets/backgrounds/normal_earth_crescent.jpg);
+}
+#gameboard{
+    width: 450px;
+    float: left;
+
+}
+#central-column{
+    width: 320px;
+    min-width: 320px;
+    height: 100%;
+    float: left;
+}
+#zoomed-in{
+    width: 320px;
+}
+#player{
+    width: 25%;
+    float: left;
+    padding-left: 50px;
+}
+
+.system-tip{
+    position:absolute;
+    z-index: 999;
+    background: black;
+    color: #f5f5f5;
+    display: none;
+    width: 250px;
+    height: 150px;
+    border: 1px solid grey;
+    opacity:0.8;
+}
+
+.system{
+    background: black;
+    border: 1px solid red;
+    float:left;
+    color: white;
+    opacity:0.8;
+}
+.keystat{
+    padding-left: 10px;
+}
+#zoomed-system-name{
+    min-width: 200px;
+}
+#zoomed-keystats{
+}
+#zoomed-number-of-buildings-built{
+    color: white;
+}
+#zoomed-number-of-buildings-cap{
+    color: white;
+}
+#zoomed-number-of-armies-in-battlefield{
+    color: orange;
+}
+#zoomed-number-of-ships-in-orbit{
+    color: blue;
+}
+#zoomed-number-of-enemy-ships-in-orbit{
+    color: red;
+}
+#zoomed-orbit{
+    background-color: blue;
+}
+#zoomed-battlefield{
+    background-color: orange;
+}
+#zoomed-city{
+    background-color: #ee82ee;
+}
+#zoomed-income{
+    color: white;
+    background-color: black;
+    opacity:0.7;
+}
+#zoomed-ore-income{
+}
+#zoomed-food-income{
+}
+#zoomed-tech-income{
+}

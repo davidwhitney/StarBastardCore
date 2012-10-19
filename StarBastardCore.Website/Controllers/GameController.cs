@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using StarBastardCore.Website.Code.Game.Systems;
 
@@ -17,14 +18,27 @@ namespace StarBastardCore.Website.Controllers
         {
             var uniqueGameId = Guid.NewGuid();
 
-            var game = _generator.Generate();
+            var systems = _generator.Generate();
+            var game = new Game { Systems = systems };
+            Session["game_" + uniqueGameId] = game;
 
             return RedirectToAction("View", new {id = uniqueGameId});
         }
 
         public ActionResult View(Guid id)
         {
-            return View();
+            var game = Session["game_" + id] as Game;
+            return View(game);
+        }
+    }
+
+    public class Game
+    {
+        public List<PlanetarySystem> Systems { get; set; }
+
+        public Game()
+        {
+            Systems = new List<PlanetarySystem>();
         }
     }
 }

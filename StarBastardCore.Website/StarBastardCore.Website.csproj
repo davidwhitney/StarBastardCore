@@ -209,12 +209,18 @@
   <ItemGroup>
     <Content Include="Content\css\bootstrap-responsive.css" />
     <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\site.css" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\GameRendering\renderer-gamecontext.js" />
+    <Content Include="Scripts\GameRendering\renderer-detail-view.js" />
+    <Content Include="Scripts\GameRendering\renderer-game-world.js" />
+    <Content Include="Scripts\GameRendering\renderer-player-area.js" />
+    <Content Include="Scripts\GameRendering\renderer-ui.core.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

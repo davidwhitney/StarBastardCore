@@ -12,6 +12,8 @@ namespace StarBastardCore.Website.App_Start
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include("~/Scripts/jquery-ui-{version}.js"));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/game-renderer").Include("~/Scripts/GameRendering/renderer-*"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include("~/Scripts/jquery.unobtrusive*",
                                                                         "~/Scripts/jquery.validate*"));
 
