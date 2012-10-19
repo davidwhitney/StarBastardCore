@@ -19,7 +19,7 @@ namespace StarBastardCore.Website.Controllers
             var uniqueGameId = Guid.NewGuid();
 
             var systems = _generator.Generate();
-            var game = new Game { Systems = systems };
+            var game = new GameContext { Systems = systems };
             Session["game_" + uniqueGameId] = game;
 
             return RedirectToAction("View", new {id = uniqueGameId});
@@ -27,16 +27,16 @@ namespace StarBastardCore.Website.Controllers
 
         public ActionResult View(Guid id)
         {
-            var game = Session["game_" + id] as Game;
+            var game = Session["game_" + id] as GameContext;
             return View(game);
         }
     }
 
-    public class Game
+    public class GameContext
     {
         public List<PlanetarySystem> Systems { get; set; }
 
-        public Game()
+        public GameContext()
         {
             Systems = new List<PlanetarySystem>();
         }
