@@ -9,6 +9,11 @@ function systemDetailsRenderer() {
         if(system == null) {
             return;
         }
+        
+        if (system.Name === "Undiscovered") {
+            $('#zoomed-in').fadeOut();
+            return;
+        }
 
         $('#zoomed-system-name').text(system.Name);
         $('#zoomed-number-of-buildings-built').text(system.City.length);
