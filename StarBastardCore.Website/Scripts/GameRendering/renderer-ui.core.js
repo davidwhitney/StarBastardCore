@@ -33,6 +33,14 @@ function uiComponents(updateUiFunction){
                 $(this).css('background-color', 'black');
             }
         );
+        
+        $(".poptip").hover(
+            function () {
+                $(this).tooltip('show');
+            },
+            function () {
+            }
+        );
 
         $(".start-turn").click(function(){
             $('#welcome-help').hide();
