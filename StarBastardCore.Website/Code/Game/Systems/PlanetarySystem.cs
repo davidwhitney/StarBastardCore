@@ -35,12 +35,13 @@ namespace StarBastardCore.Website.Code.Game.Systems
             City = new List<IBuilding>();
         }
 
-        public PlanetarySystem(string name, string systemNumber, int buildingCap)
+        public PlanetarySystem(string name, string systemNumber, int buildingCap, Player owner)
             : this()
         {
             Name = name;
             SystemNumber = systemNumber;
             BuildingCap = buildingCap;
+            Owner = owner;
         }
 
         public Resources ResourceIncreasePrediction
@@ -54,6 +55,11 @@ namespace StarBastardCore.Website.Code.Game.Systems
                 }
                 return resourceChange;
             }
+        }
+
+        public static PlanetarySystem UndiscoveredSystem(string systemNumber)
+        {
+            return new PlanetarySystem("Undiscovered", systemNumber, 0, Player.Unknown);
         }
     }
 }

@@ -10,5 +10,10 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
         {
             VisibleToUserInThisList = new List<Player>();
         }
+
+        public bool PlayerCanSeeSystem(Player player)
+        {
+            return VisibleToUserInThisList.Contains(player);
+        }
     }
 }

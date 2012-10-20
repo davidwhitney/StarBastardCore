@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using StarBastardCore.Website.Code.Game.Gameplay;
 using StarBastardCore.Website.Code.Game.Systems;
+using System.Linq;
+using StarBastardCore.Website.Models.Game;
 
 namespace StarBastardCore.Website.Controllers
 {
@@ -28,8 +30,9 @@ namespace StarBastardCore.Website.Controllers
 
         public ActionResult View(Guid id)
         {
-            var game = Session["game_" + id] as GameContext;
-            return View(game);
+            var game = (GameContext)Session["game_" + id];
+            var vm = CurrentTurnViewModel.FromGameContext(game);
+            return View(vm);
         }
     }
 }

@@ -14,5 +14,6 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
         }
 
         public static Player None = new Player(string.Empty, "None");
+        public static Player Unknown = new Player(string.Empty, "Unknown");
     }
 }

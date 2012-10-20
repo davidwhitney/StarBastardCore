@@ -24,7 +24,7 @@ namespace StarBastardCore.Website.Code.Game.Systems
             for (var i = 0; i != GameDimensions.SectorSize; i++)
             {
                 var name = NamesRepository.RandomName();
-                var oneSystem = new PlanetarySystem(name, playerNumber + "_" + (i + 1), points[i]) {Owner = Player.None};
+                var oneSystem = new PlanetarySystem(name, playerNumber + "_" + (i + 1), points[i], Player.None);
                 systems[i] = oneSystem;
             }
            
