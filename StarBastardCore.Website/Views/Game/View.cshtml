@@ -1,16 +1,19 @@
 ﻿@using Newtonsoft.Json
-@model StarBastardCore.Website.Controllers.GameContext
+@model StarBastardCore.Website.Code.Game.Gameplay.GameContext
 @{
     ViewBag.Title = "title";
 }
 
-@{
-
-    var json = JsonConvert.SerializeObject(Model);
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Welcome to @Model.Name</h1>
+                <h2>Player X's turn.</h2>
+            </hgroup>
+        </div>
+    </section>
 }
-
-
-<h2>Viewing your game</h2>
 
 
 <div id="gameplayarea" class="row clearfix">
@@ -106,6 +109,10 @@
             var $playerRenderer = new playerAreaRender();
             var $detailRenderer = new detailedViewRenderer();
             var $worldRenderer = new gameWorldRenderer();
+            
+            @{
+                var json = JsonConvert.SerializeObject(Model);
+            }
             
             var gameboard = @(Html.Raw(json));
             var context = new gameContext(gameboard);

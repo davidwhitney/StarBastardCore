@@ -10,3 +10,4 @@
 /StarBastardCore.Website\App_Data/aspnet-StarBastardCore.mdf
 /StarBastardCore.Website\App_Data/aspnet-StarBastardCore_log.ldf
 /StarBastardCore.Website/*.user
+/*.user

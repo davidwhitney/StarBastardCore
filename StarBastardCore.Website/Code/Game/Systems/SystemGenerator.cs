@@ -24,13 +24,12 @@ namespace StarBastardCore.Website.Code.Game.Systems
 
             for (var i = 0; i != 37; i++)
             {
-                var name = PlanetarySystemNamesRepository.Names[random.Next(1, PlanetarySystemNamesRepository.Names.Count)];
+                var name = NamesRepository.RandomName();
                 var oneSystem = new PlanetarySystem(name, playerNumber + "_" + (i + 1), points[i], playerNumber);
                 systems[i] = oneSystem;
             }
 
             systems[18].Orbit.Add(new ConstructionStarship(playerNumber));
-
 
             return systems;
         }

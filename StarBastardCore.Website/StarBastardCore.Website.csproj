@@ -187,10 +187,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AppSettingsWrapper.cs" />
     <Compile Include="Code\Game\Fleet\constructionStarship.cs" />
+    <Compile Include="Code\Game\Gameplay\Player.cs" />
+    <Compile Include="Code\Game\Gameplay\Resources.cs" />
     <Compile Include="Code\Game\Systems\PlanetarySystem.cs" />
-    <Compile Include="Code\Game\Systems\PlanetarySystemNamesRepository.cs" />
+    <Compile Include="Code\Game\Systems\NamesRepository.cs" />
     <Compile Include="Code\Game\Systems\SystemGenerator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Code\Game\Gameplay\GameContext.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />

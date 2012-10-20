@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
+using StarBastardCore.Website.Code.Game.Gameplay;
 using StarBastardCore.Website.Code.Game.Systems;
 
 namespace StarBastardCore.Website.Controllers
@@ -16,29 +16,18 @@ namespace StarBastardCore.Website.Controllers
 
         public RedirectToRouteResult Create()
         {
-            var uniqueGameId = Guid.NewGuid();
+            var game = GameContext.Create(NamesRepository.RandomName())
+                                    .WithSystems(_generator.Generate());
 
-            var systems = _generator.Generate();
-            var game = new GameContext { Systems = systems };
-            Session["game_" + uniqueGameId] = game;
+            Session["game_" + game.Id] = game;
 
-            return RedirectToAction("View", new {id = uniqueGameId});
+            return RedirectToAction("View", new { id = game .Id });
         }
 
         public ActionResult View(Guid id)
         {
             var game = Session["game_" + id] as GameContext;
             return View(game);
-        }
-    }
-
-    public class GameContext
-    {
-        public List<PlanetarySystem> Systems { get; set; }
-
-        public GameContext()
-        {
-            Systems = new List<PlanetarySystem>();
         }
     }
 }

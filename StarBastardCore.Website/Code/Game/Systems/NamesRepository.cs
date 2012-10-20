@@ -1,9 +1,22 @@
+using System;
 using System.Collections.Generic;
 
 namespace StarBastardCore.Website.Code.Game.Systems
 {
-    public static class PlanetarySystemNamesRepository
+    public static class NamesRepository
     {
+        private static Random _random;
+
+        static NamesRepository()
+        {
+            _random = new Random();
+        }
+
+        public static string RandomName()
+        {
+            return Names[_random.Next(0, Names.Count)];
+        }
+
         public static readonly List<string> Names = new List<string>(new []{
 "AHearn",
 "AAS",
@@ -16459,5 +16472,6 @@ namespace StarBastardCore.Website.Code.Game.Systems
 "von Wurden",
 "von Zeipel"}
 );
+
     }
 }
