@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using StarBastardCore.Website.Code.Game.Fleet;
 
 namespace StarBastardCore.Website.Code.Game.Systems
 {
+    public class GameDimensions
+    {
+        public const int SectorSize = 37;
+        public const int StartingPlanetarySystem = 18;
+    }
+
     public class SystemGenerator
     {
+
         public List<PlanetarySystem> Generate()
         {
             var system = new List<PlanetarySystem>();
@@ -18,25 +23,23 @@ namespace StarBastardCore.Website.Code.Game.Systems
 
         private IEnumerable<PlanetarySystem> GenerateSystemForOnePlayer(int playerNumber)
         {
-            var systems = new PlanetarySystem[37];
+            var systems = new PlanetarySystem[GameDimensions.SectorSize];
             var points = generateScoresForSetOfPlanets();
             var random = new Random();
 
-            for (var i = 0; i != 37; i++)
+            for (var i = 0; i != GameDimensions.SectorSize; i++)
             {
                 var name = NamesRepository.RandomName();
-                var oneSystem = new PlanetarySystem(name, playerNumber + "_" + (i + 1), points[i], playerNumber);
+                var oneSystem = new PlanetarySystem(name, playerNumber + "_" + (i + 1), points[i]);
                 systems[i] = oneSystem;
             }
-
-            systems[18].Orbit.Add(new ConstructionStarship(playerNumber));
-
+           
             return systems;
         }
 
         private List<int> generateScoresForSetOfPlanets()
         {
-            var points = new int[37];
+            var points = new int[GameDimensions.SectorSize];
             var totalPoints = 100;
             var random = new Random();
 
@@ -44,7 +47,7 @@ namespace StarBastardCore.Website.Code.Game.Systems
             { 
                 // lets make sure we get allocated
                 //generate planet points
-                for (var p = 0; p != 37; p++)
+                for (var p = 0; p != GameDimensions.SectorSize; p++)
                 {
                     var randomBetweenOneAndTen = random.Next(1, 10);
                     if (randomBetweenOneAndTen > totalPoints)
@@ -60,7 +63,7 @@ namespace StarBastardCore.Website.Code.Game.Systems
 
             
             // ensure the start position is workable.
-            if (points[18] == 0)
+            if (points[GameDimensions.StartingPlanetarySystem] == 0)
             {
                 for (var i = 0; i < points.Length; i++)
                 {

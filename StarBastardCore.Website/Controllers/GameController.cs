@@ -19,6 +19,8 @@ namespace StarBastardCore.Website.Controllers
             var game = GameContext.Create(NamesRepository.RandomName())
                                     .WithSystems(_generator.Generate());
 
+            game.AddPlayer(new Player("123", "david"));
+
             Session["game_" + game.Id] = game;
 
             return RedirectToAction("View", new { id = game .Id });

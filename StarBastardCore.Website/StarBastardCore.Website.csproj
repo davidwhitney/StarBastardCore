@@ -186,12 +186,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AppSettingsWrapper.cs" />
-    <Compile Include="Code\Game\Fleet\constructionStarship.cs" />
+    <Compile Include="Code\Game\Units\Buildings\IBuilding.cs" />
+    <Compile Include="Code\Game\Units\Starships\ConstructionStarship.cs" />
+    <Compile Include="Code\Game\Units\Starships\IStarship.cs" />
+    <Compile Include="Code\Game\Gameplay\ExplorationMap.cs" />
+    <Compile Include="Code\Game\Gameplay\Actions\IAction.cs" />
+    <Compile Include="Code\Game\Gameplay\Actions\MoveAction.cs" />
     <Compile Include="Code\Game\Gameplay\Player.cs" />
     <Compile Include="Code\Game\Gameplay\Resources.cs" />
+    <Compile Include="Code\Game\Gameplay\Visibility.cs" />
     <Compile Include="Code\Game\Systems\PlanetarySystem.cs" />
     <Compile Include="Code\Game\Systems\NamesRepository.cs" />
     <Compile Include="Code\Game\Systems\SystemGenerator.cs" />
+    <Compile Include="Code\Game\Units\IUnit.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Code\Game\Gameplay\GameContext.cs" />
     <Compile Include="Controllers\GameController.cs" />
@@ -279,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Code\Game\Units\GroundUnits\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
