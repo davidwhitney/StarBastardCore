@@ -1,5 +1,5 @@
 
-function playerAreaRender(){
+function playerStatusRenderer(){
 
     this.render = function(context, player){
 

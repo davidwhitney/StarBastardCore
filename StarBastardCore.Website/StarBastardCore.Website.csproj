@@ -238,7 +238,7 @@
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\GameRendering\renderer-system-details.js" />
     <Content Include="Scripts\GameRendering\renderer-game-board.js" />
-    <Content Include="Scripts\GameRendering\renderer-player-area.js" />
+    <Content Include="Scripts\GameRendering\renderer-player-status.js" />
     <Content Include="Scripts\GameRendering\renderer-player-controls.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />

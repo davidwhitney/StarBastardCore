@@ -17,6 +17,12 @@
     padding-left: 10px;
 }
 
+.ConstructionStarship{
+    width: 50px;
+    height: 50px;
+    background-color: green;
+}
+
 #zoomed-keystats{
 }
 #zoomed-number-of-buildings-built{

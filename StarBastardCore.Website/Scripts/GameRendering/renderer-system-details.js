@@ -35,9 +35,8 @@ function systemDetailsRenderer() {
 
             $('<div/>', {
                 title: value.Name,
-                text: "ss",
-                class: value.Name + ' poptip',
-                style: 'width: 50px; height: 50px; background-color: green;',
+                text: 's',
+                class: value.Name + ' IMovableUnitPopout',
             }).appendTo('#zoomed-orbit-ships');
             
         });
@@ -52,6 +51,14 @@ function systemDetailsRenderer() {
                 style: 'width: 50px; height: 50px; background-color: green;',
             }).appendTo('#zoomed-city-items');
             
+        });
+        
+
+        $(".IMovableUnitPopout").click(function () {
+            $(this).popover({
+                html: 'true',
+                content: 'Move',
+            });
         });
 
         $('#zoomed-in').fadeIn();

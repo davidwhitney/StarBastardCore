@@ -99,9 +99,9 @@
     <script type="text/javascript">
         $(function() {
             
-            var $playerRenderer = new playerAreaRender();
-            var $detailRenderer = new systemDetailsRenderer();
-            var $worldRenderer = new gameBoardRenderer();
+            var $playerStatusRenderer = new playerStatusRenderer();
+            var $systemDetailsRenderer = new systemDetailsRenderer();
+            var $gameboardRenderer = new gameBoardRenderer();
 
             
             var gameboard = @(Html.Raw(json));
@@ -109,18 +109,15 @@
             window.gameboard = gameboard.Systems;
             window.context = gameboard;
             
-            $worldRenderer.render(context, $("#systems"));
+            $gameboardRenderer.render(context, $("#systems"));
 
-            var ui = new playerControls(function(ctx) {
-                render(ctx);
+            var $playerControls = new playerControls(function(ctx) {
+                $systemDetailsRenderer.render(ctx, $playerControls.getSelectedSystem());
+                $playerStatusRenderer.render(context, context.CurrentPlayer);
             });
-
-            ui.bindToUi();
             
-            function render(ctx){
-                $playerRenderer.render(context, context.CurrentPlayer);
-                $detailRenderer.render(ctx, ui.getSelectedSystem());
-            }
+            $playerControls.bindToUi();
+            
         });
     </script>
 }

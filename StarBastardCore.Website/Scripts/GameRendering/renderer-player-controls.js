@@ -45,15 +45,10 @@ function playerControls(updateUiFunction){
             function () {
             }
         );
+        
 
-        $(".start-turn").click(function(){
-            $('#welcome-help').hide();
-
-            window.context.startTurn();
-        });
     };
-
-
+    
     this.getSelectedSystem = function () {
         return $('body').data('activeSystem');
     };
