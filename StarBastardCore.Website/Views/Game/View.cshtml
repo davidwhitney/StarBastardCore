@@ -4,17 +4,9 @@
     ViewBag.Title = "title";
 }
 
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Welcome to @Model.Gameboard.Name</h1>
-                <h2>@Model.Gameboard.CurrentPlayer.Name's turn.</h2>
-            </hgroup>
-        </div>
-    </section>
-}
-
+<div class="page-header">
+    <h1> @Model.Gameboard.Name <small>@Model.Gameboard.CurrentPlayer.Name's turn.</small></h1>
+</div>
 
 <div id="gameplayarea" class="row clearfix">
     <div id="gameboard" class="span5">
@@ -98,7 +90,8 @@
 <div style="clear:both;"></div>
 <div class="clearfix"></div>
 <div id="systemsSummary"></div>
-
+            
+@{ var json = JsonConvert.SerializeObject(Model.Gameboard); }
 @section scripts {
 
     @Scripts.Render("~/bundles/game-renderer")
@@ -109,10 +102,7 @@
             var $playerRenderer = new playerAreaRender();
             var $detailRenderer = new systemDetailsRenderer();
             var $worldRenderer = new gameBoardRenderer();
-            
-            @{
-                var json = JsonConvert.SerializeObject(Model.Gameboard);
-            }
+
             
             var gameboard = @(Html.Raw(json));
             
@@ -134,3 +124,12 @@
         });
     </script>
 }
+
+
+<section>
+    <h2>Debug - World Model</h2>
+    <p>This is the filtered view for the current player.</p>
+    <code>
+        @(Html.Raw(json));
+    </code>
+</section>

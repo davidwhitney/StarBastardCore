@@ -1,16 +1,11 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Welcome to @PageData["GameName"]</h1>
-                <h2>A micro 4x strategy game</h2>
-            </hgroup>
-        </div>
-    </section>
-}
 
+<div class="hero-unit">
+  <h1>Welcome to @PageData["GameName"]</h1>
+  <p>A micro 4x strategy gam</p>
+</div>
 
 <a href="@Url.Action("Create", "Game")" class="btn btn-primary">New Game</a>
+
