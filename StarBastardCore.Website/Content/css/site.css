@@ -7,6 +7,12 @@
     color: white;
     opacity:0.8;
 }
+
+.discovered {
+    background: yellow; 
+    color: black; 
+}
+
 .keystat{
     padding-left: 10px;
 }

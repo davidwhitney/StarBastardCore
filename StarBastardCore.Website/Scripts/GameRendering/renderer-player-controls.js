@@ -23,14 +23,18 @@ function playerControls(updateUiFunction){
             $('#zoomed-in').fadeOut();
         });
 
-
+        var toggledHoverProperty = 'background-color';
+        var previousToggledHoverColor = 'black';
+        
         $(".system").hover(
             function () {
-                $(this).css('background-color', 'red');
+                
+                previousToggledHoverColor = $(this).css(toggledHoverProperty);
+                $(this).css(toggledHoverProperty, 'red');
                 $(this).tooltip('show');
             },
             function () {
-                $(this).css('background-color', 'black');
+                $(this).css(toggledHoverProperty, previousToggledHoverColor);
             }
         );
         

@@ -18,14 +18,21 @@ function gameBoardRenderer() {
         $.each($gameboard, function(key, value) {
             var system = $gameboard[key];
             metaData.push(new renderedSystemMetaData(key, system.SystemNumber));
-            
+
+            var systemStyle = "";
+            if(system.Name != "Undiscovered") {
+                systemStyle = " discovered";
+            }
+
             $('<div/>', {
                 id: 'system-' + system.SystemNumber,
                 title: system.Name,
-                class: 'system',
+                class: 'system' + systemStyle,
                 style: 'width: ' + $boxWidth + 'px; height: ' + $boxHeight + 'px',
             }).appendTo(currentLine);
-            
+
+            $('#system-' + system.SystemNumber).css('background-color', 'white');
+
             boxesOnThisLine++;
 
             if(systemOffset == 4 || (systemOffset - 37) == 4
