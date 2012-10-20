@@ -186,6 +186,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AppSettingsWrapper.cs" />
+    <Compile Include="Code\Game\Systems\GameDimensions.cs" />
     <Compile Include="Code\Game\Units\Buildings\IBuilding.cs" />
     <Compile Include="Code\Game\Units\Starships\ConstructionStarship.cs" />
     <Compile Include="Code\Game\Units\Starships\IStarship.cs" />
@@ -226,7 +227,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\GameRendering\renderer-gamecontext.js" />
     <Content Include="Scripts\GameRendering\renderer-detail-view.js" />
     <Content Include="Scripts\GameRendering\renderer-game-world.js" />
     <Content Include="Scripts\GameRendering\renderer-player-area.js" />

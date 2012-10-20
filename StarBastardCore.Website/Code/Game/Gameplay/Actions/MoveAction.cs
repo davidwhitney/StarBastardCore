@@ -17,7 +17,7 @@ namespace StarBastardCore.Website.Code.Game.Gameplay.Actions
 
         public void Execute(Player currentPlayer, GameContext context)
         {
-            if (_destinationPlanet.Owner == null)
+            if (_destinationPlanet.Owner == Player.None)
             {
                 _destinationPlanet.Owner = currentPlayer;
             }

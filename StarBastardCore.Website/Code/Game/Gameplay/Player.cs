@@ -12,5 +12,7 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
             Name = name;
             Resources = new Resources();
         }
+
+        public static Player None = new Player(string.Empty, "None");
     }
 }

@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StarBastardCore.Website.Code.Game.Gameplay;
 
 namespace StarBastardCore.Website.Code.Game.Systems
 {
-    public class GameDimensions
-    {
-        public const int SectorSize = 37;
-        public const int StartingPlanetarySystem = 18;
-    }
-
     public class SystemGenerator
     {
-
         public List<PlanetarySystem> Generate()
         {
             var system = new List<PlanetarySystem>();
@@ -30,7 +24,7 @@ namespace StarBastardCore.Website.Code.Game.Systems
             for (var i = 0; i != GameDimensions.SectorSize; i++)
             {
                 var name = NamesRepository.RandomName();
-                var oneSystem = new PlanetarySystem(name, playerNumber + "_" + (i + 1), points[i]);
+                var oneSystem = new PlanetarySystem(name, playerNumber + "_" + (i + 1), points[i]) {Owner = Player.None};
                 systems[i] = oneSystem;
             }
            

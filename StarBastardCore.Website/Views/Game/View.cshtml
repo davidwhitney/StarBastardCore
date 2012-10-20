@@ -115,22 +115,21 @@
             }
             
             var gameboard = @(Html.Raw(json));
-            var context = new gameContext(gameboard);
             
             window.gameboard = gameboard.Systems;
-            window.context = context;
+            window.context = gameboard;
             
             $worldRenderer.render(context, $("#systems"));
 
-            var ui = new uiComponents(function(context) {
-                render(context);
+            var ui = new uiComponents(function(ctx) {
+                render(ctx);
             });
 
             ui.bindToUi();
             
             function render(ctx){
                 //$playerRenderer.render(context, context.currentPlayer());
-                $detailRenderer.render(ctx, window.context.getSelectedSystem());
+                $detailRenderer.render(ctx, ui.getSelectedSystem());
             }
         });
     </script>

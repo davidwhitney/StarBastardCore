@@ -1,7 +1,8 @@
 function uiComponents(updateUiFunction){
 
     var $updateUiFunction = updateUiFunction;
-
+    var $this = this;
+    
     this.bindToUi = function(){
 
         $("body").mousemove(function(e){
@@ -13,7 +14,7 @@ function uiComponents(updateUiFunction){
         $(".system").click(function(){
             var id = $(this).data('id');
             var thisSystem = window.gameboard[id];
-            window.context.setSelectedSystem(thisSystem);
+            $this.setSelectedSystem(thisSystem);
 
             $updateUiFunction(window.context);
         });
@@ -53,7 +54,7 @@ function uiComponents(updateUiFunction){
         });
 
         function build(building){
-            var selectedSystem = window.context.getSelectedSystem();
+            var selectedSystem = $this.getSelectedSystem();
             if(selectedSystem == null){
                 return;
             }
@@ -63,4 +64,12 @@ function uiComponents(updateUiFunction){
     };
 
 
+    this.getSelectedSystem = function () {
+        return $('body').data('activeSystem');
+    };
+
+    this.setSelectedSystem = function (system) {
+        $('body').data('activeSystem', system);
+    };
+    
 };

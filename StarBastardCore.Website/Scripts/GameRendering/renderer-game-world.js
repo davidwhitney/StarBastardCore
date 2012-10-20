@@ -5,7 +5,7 @@ function gameWorldRenderer() {
 
         target.html('');
 
-        var $gameboard = context.systems();
+        var $gameboard = context.Systems;
         var $boxHeight = 42;
         var $boxWidth = 42;
 
