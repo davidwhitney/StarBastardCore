@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Web.Mvc;
+using StarBastardCore.Website.Code.DataAccess;
 using StarBastardCore.Website.Code.Game.Gameplay;
 using StarBastardCore.Website.Code.Game.Systems;
-using System.Linq;
 using StarBastardCore.Website.Models.Game;
+using WebMatrix.WebData;
 
 namespace StarBastardCore.Website.Controllers
 {
     public class GameController : Controller
     {
         private readonly SystemGenerator _generator;
+        private readonly GameRepository _gameRepository;
+        private const bool FogOfWar = false;
 
-        public GameController(SystemGenerator generator)
+        public GameController(SystemGenerator generator, GameRepository gameRepository)
         {
             _generator = generator;
+            _gameRepository = gameRepository;
         }
 
         public RedirectToRouteResult Create()
@@ -21,18 +25,30 @@ namespace StarBastardCore.Website.Controllers
             var game = GameContext.Create(NamesRepository.RandomName())
                                     .WithSystems(_generator.Generate());
 
-            game.AddPlayer(new Player("123", "david"));
+            game.AddPlayer(WebSecurityEx.IsAuthenticated()
+                               ? new Player(WebSecurity.CurrentUserId, WebSecurity.CurrentUserName)
+                               : Player.UnauthenticatedPlayer1);
 
-            Session["game_" + game.Id] = game;
+            game.AddPlayer(Player.UnauthenticatedPlayer2);
+
+            _gameRepository.Save(game);
 
             return RedirectToAction("View", new { id = game .Id });
         }
 
         public ActionResult View(Guid id)
         {
-            var game = (GameContext)Session["game_" + id];
-            var vm = CurrentTurnViewModel.FromGameContext(game);
+            var game = _gameRepository.Load(id);
+            var vm = CurrentTurnViewModel.FromGameContext(game, FogOfWar);
             return View(vm);
+        }
+    }
+
+    public static class WebSecurityEx
+    {
+        public static bool IsAuthenticated()
+        {
+            return !string.IsNullOrWhiteSpace(WebSecurity.CurrentUserName);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Web.WebPages.OAuth;
 using StarBastardCore.Website.Code;
+using StarBastardCore.Website.Filters;
 
 namespace StarBastardCore.Website.App_Start
 {
@@ -18,6 +19,8 @@ namespace StarBastardCore.Website.App_Start
                                                     appSecret: settings.Get<string>("Facebook.AppSecret"));
 
             OAuthWebSecurity.RegisterGoogleClient();
+        
+            InitializeSimpleMembershipAttribute.SimpleMembershipInitializer.Init();
         }
     }
 }

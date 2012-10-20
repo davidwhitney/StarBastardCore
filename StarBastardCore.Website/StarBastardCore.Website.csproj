@@ -202,6 +202,7 @@
     <Compile Include="Code\Game\Units\IUnit.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Code\Game\Gameplay\GameContext.cs" />
+    <Compile Include="Code\DataAccess\GameRepository.cs" />
     <Compile Include="Models\Game\CurrentTurnViewModel.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

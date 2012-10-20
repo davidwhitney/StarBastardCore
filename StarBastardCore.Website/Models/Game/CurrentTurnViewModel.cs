@@ -21,7 +21,7 @@ namespace StarBastardCore.Website.Models.Game
             Players = new List<Player>();
         }
 
-        public static CurrentTurnViewModel FromGameContext(GameContext game)
+        public static CurrentTurnViewModel FromGameContext(GameContext game, bool fogOfWar = true)
         {
             var vm = new CurrentTurnViewModel
                 {
@@ -35,9 +35,13 @@ namespace StarBastardCore.Website.Models.Game
             foreach (var system in game.Systems)
             {
                 var planetExplorationHistory = game.ExplorationMap[system];
-                var systemToAdd = planetExplorationHistory.PlayerCanSeeSystem(game.CurrentPlayer)
-                                      ? system
-                                      : PlanetarySystem.UndiscoveredSystem(system.SystemNumber);
+
+                var systemToAdd = fogOfWar
+                                      ? (planetExplorationHistory.PlayerCanSeeSystem(game.CurrentPlayer)
+                                             ? system
+                                             : PlanetarySystem.UndiscoveredSystem(system.SystemNumber))
+                                      : system;
+
                 vm.Systems.Add(systemToAdd);
             }
             return vm;
