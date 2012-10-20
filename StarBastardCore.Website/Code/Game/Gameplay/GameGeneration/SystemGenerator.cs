@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using StarBastardCore.Website.Code.Game.Gameplay;
+using StarBastardCore.Website.Code.Game.Gameworld.Geography;
 
-namespace StarBastardCore.Website.Code.Game.Systems
+namespace StarBastardCore.Website.Code.Game.Gameplay.GameGeneration
 {
     public class SystemGenerator
     {

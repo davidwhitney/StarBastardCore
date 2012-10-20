@@ -1,4 +1,4 @@
-function uiComponents(updateUiFunction){
+function playerControls(updateUiFunction){
 
     var $updateUiFunction = updateUiFunction;
     var $this = this;
@@ -47,28 +47,6 @@ function uiComponents(updateUiFunction){
 
             window.context.startTurn();
         });
-
-        $(".build-farm").click(function(){
-            build(new Farm());
-        });
-        $(".build-sciencelab").click(function(){
-            build(new ScienceLab());
-        });
-        $(".build-mine").click(function(){
-            build(new Mine());
-        });
-        $(".build-spaceport").click(function(){
-            build(new Spaceport());
-        });
-
-        function build(building){
-            var selectedSystem = $this.getSelectedSystem();
-            if(selectedSystem == null){
-                return;
-            }
-            var action = new buildAction(building, selectedSystem, window.context.currentPlayer());
-            window.context.queueAction(action);
-        };
     };
 
 

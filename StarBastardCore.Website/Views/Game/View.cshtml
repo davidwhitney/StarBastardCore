@@ -1,5 +1,5 @@
 ﻿@using Newtonsoft.Json
-@model StarBastardCore.Website.Models.Game.CurrentTurnViewModel
+@model StarBastardCore.Website.Controllers.GameBoardAndSupportingUiDataViewModel
 @{
     ViewBag.Title = "title";
 }
@@ -8,8 +8,8 @@
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>Welcome to @Model.Name</h1>
-                <h2>@Model.CurrentPlayer.Name's turn.</h2>
+                <h1>Welcome to @Model.Gameboard.Name</h1>
+                <h2>@Model.Gameboard.CurrentPlayer.Name's turn.</h2>
             </hgroup>
         </div>
     </section>
@@ -107,11 +107,11 @@
         $(function() {
             
             var $playerRenderer = new playerAreaRender();
-            var $detailRenderer = new detailedViewRenderer();
-            var $worldRenderer = new gameWorldRenderer();
+            var $detailRenderer = new systemDetailsRenderer();
+            var $worldRenderer = new gameBoardRenderer();
             
             @{
-                var json = JsonConvert.SerializeObject(Model);
+                var json = JsonConvert.SerializeObject(Model.Gameboard);
             }
             
             var gameboard = @(Html.Raw(json));
@@ -121,14 +121,14 @@
             
             $worldRenderer.render(context, $("#systems"));
 
-            var ui = new uiComponents(function(ctx) {
+            var ui = new playerControls(function(ctx) {
                 render(ctx);
             });
 
             ui.bindToUi();
             
             function render(ctx){
-                //$playerRenderer.render(context, context.currentPlayer());
+                $playerRenderer.render(context, context.CurrentPlayer);
                 $detailRenderer.render(ctx, ui.getSelectedSystem());
             }
         });

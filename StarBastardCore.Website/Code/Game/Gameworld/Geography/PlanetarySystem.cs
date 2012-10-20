@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using StarBastardCore.Website.Code.Game.Gameplay;
-using StarBastardCore.Website.Code.Game.Units;
-using StarBastardCore.Website.Code.Game.Units.Buildings;
-using StarBastardCore.Website.Code.Game.Units.Starships;
+using StarBastardCore.Website.Code.Game.Gameworld.Geography.Buildings;
+using StarBastardCore.Website.Code.Game.Gameworld.Units;
+using StarBastardCore.Website.Code.Game.Gameworld.Units.Starships;
 
-namespace StarBastardCore.Website.Code.Game.Systems
+namespace StarBastardCore.Website.Code.Game.Gameworld.Geography
 {
     public class PlanetarySystem
     {
@@ -54,6 +54,15 @@ namespace StarBastardCore.Website.Code.Game.Systems
                     resourceChange.Modify(building.Produce());
                 }
                 return resourceChange;
+            }
+        }
+
+        public bool CanBuild
+        {
+            get
+            {
+                return BuildingCap > City.Count 
+                        && PlayerShipsInOrbit.Any(x => x.GetType() == typeof (ConstructionStarship));
             }
         }
 

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace StarBastardCore.Website.Code.Game.Systems
+namespace StarBastardCore.Website.Code.Game.Gameplay.GameGeneration
 {
     public static class NamesRepository
     {

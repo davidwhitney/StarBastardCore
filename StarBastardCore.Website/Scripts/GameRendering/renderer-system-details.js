@@ -1,4 +1,4 @@
-function detailedViewRenderer() {
+function systemDetailsRenderer() {
 
     this.render = function(context, system){
         var $context = context;

@@ -4,17 +4,17 @@ function playerAreaRender(){
     this.render = function(context, player){
 
 
-        $(".player-number").text(player.playerNumber());
-        $("#activePlayerName").text(player.playerName());
-        $("#player-ore-income").text(player.resources().ore());
-        $("#player-food-income").text(player.resources().food());
-        $("#player-tech-income").text(player.resources().tech());
+        $(".player-number").text(player.UserId);
+        $("#activePlayerName").text(player.Name);
+        $("#player-ore-income").text(player.Resources.Ore);
+        $("#player-food-income").text(player.Resources.Food);
+        $("#player-tech-income").text(player.Resources.Tech);
         $('#player-actionqueue').html('');
 
-        $.each(context.thisTurn().actionQueue(), function(key, value) {
+        /*$.each(context.thisTurn().actionQueue(), function(key, value) {
             var action = "<div>"+value.summary()+"</div>";
             $('#player-actionqueue').append(action);
-        });
+        });*/
     };
 
 }

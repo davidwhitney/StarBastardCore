@@ -186,24 +186,31 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AppSettingsWrapper.cs" />
-    <Compile Include="Code\Game\Systems\GameDimensions.cs" />
-    <Compile Include="Code\Game\Units\Buildings\IBuilding.cs" />
-    <Compile Include="Code\Game\Units\Starships\ConstructionStarship.cs" />
-    <Compile Include="Code\Game\Units\Starships\IStarship.cs" />
+    <Compile Include="Code\Game\Gameplay\GameGeneration\GameDimensions.cs" />
+    <Compile Include="Code\Game\Gameworld\Geography\Buildings\BuildingBase.cs" />
+    <Compile Include="Code\Game\Gameworld\Geography\Buildings\Farm.cs" />
+    <Compile Include="Code\Game\Gameworld\Geography\Buildings\IBuilding.cs" />
+    <Compile Include="Code\Game\Gameworld\Geography\Buildings\Mine.cs" />
+    <Compile Include="Code\Game\Gameworld\Geography\Buildings\ScienceLab.cs" />
+    <Compile Include="Code\Game\Gameworld\Geography\Buildings\Spaceport.cs" />
+    <Compile Include="Code\Game\Gameworld\Units\IMovableUnit.cs" />
+    <Compile Include="Code\Game\Gameworld\Units\Starships\ConstructionStarship.cs" />
+    <Compile Include="Code\Game\Gameworld\Units\Starships\IStarship.cs" />
     <Compile Include="Code\Game\Gameplay\ExplorationMap.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\IAction.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\MoveAction.cs" />
     <Compile Include="Code\Game\Gameplay\Player.cs" />
     <Compile Include="Code\Game\Gameplay\Resources.cs" />
     <Compile Include="Code\Game\Gameplay\Visibility.cs" />
-    <Compile Include="Code\Game\Systems\PlanetarySystem.cs" />
-    <Compile Include="Code\Game\Systems\NamesRepository.cs" />
-    <Compile Include="Code\Game\Systems\SystemGenerator.cs" />
-    <Compile Include="Code\Game\Units\IUnit.cs" />
+    <Compile Include="Code\Game\Gameworld\Geography\PlanetarySystem.cs" />
+    <Compile Include="Code\Game\Gameplay\GameGeneration\NamesRepository.cs" />
+    <Compile Include="Code\Game\Gameplay\GameGeneration\SystemGenerator.cs" />
+    <Compile Include="Code\Game\Gameworld\Units\IUnit.cs" />
+    <Compile Include="Code\Game\Gameworld\Units\UnitBase.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Code\Game\Gameplay\GameContext.cs" />
     <Compile Include="Code\DataAccess\GameRepository.cs" />
-    <Compile Include="Models\Game\CurrentTurnViewModel.cs" />
+    <Compile Include="Models\Game\SinglePlayersViewOfTheGameboardViewModel.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -229,10 +236,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\GameRendering\renderer-detail-view.js" />
-    <Content Include="Scripts\GameRendering\renderer-game-world.js" />
+    <Content Include="Scripts\GameRendering\renderer-system-details.js" />
+    <Content Include="Scripts\GameRendering\renderer-game-board.js" />
     <Content Include="Scripts\GameRendering\renderer-player-area.js" />
-    <Content Include="Scripts\GameRendering\renderer-ui.core.js" />
+    <Content Include="Scripts\GameRendering\renderer-player-controls.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -288,7 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Code\Game\Units\GroundUnits\" />
+    <Folder Include="Code\Game\Gameworld\Units\GroundUnits\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

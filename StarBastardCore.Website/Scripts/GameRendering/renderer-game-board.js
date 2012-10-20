@@ -1,4 +1,4 @@
-function gameWorldRenderer() {
+function gameBoardRenderer() {
 
 
     this.render = function(context, target){

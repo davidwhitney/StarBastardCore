@@ -1,6 +1,6 @@
 using System.Linq;
-using StarBastardCore.Website.Code.Game.Systems;
-using StarBastardCore.Website.Code.Game.Units.Starships;
+using StarBastardCore.Website.Code.Game.Gameworld.Geography;
+using StarBastardCore.Website.Code.Game.Gameworld.Units.Starships;
 
 namespace StarBastardCore.Website.Code.Game.Gameplay.Actions
 {

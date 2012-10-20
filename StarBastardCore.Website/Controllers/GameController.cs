@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using StarBastardCore.Website.Code.DataAccess;
 using StarBastardCore.Website.Code.Game.Gameplay;
-using StarBastardCore.Website.Code.Game.Systems;
+using StarBastardCore.Website.Code.Game.Gameplay.GameGeneration;
 using StarBastardCore.Website.Models.Game;
 using WebMatrix.WebData;
 
@@ -12,7 +12,6 @@ namespace StarBastardCore.Website.Controllers
     {
         private readonly SystemGenerator _generator;
         private readonly GameRepository _gameRepository;
-        private const bool FogOfWar = false;
 
         public GameController(SystemGenerator generator, GameRepository gameRepository)
         {
@@ -33,14 +32,27 @@ namespace StarBastardCore.Website.Controllers
 
             _gameRepository.Save(game);
 
-            return RedirectToAction("View", new { id = game .Id });
+            return RedirectToAction("View", new { id = game.Id });
         }
 
-        public ActionResult View(Guid id)
+        public ActionResult View(Guid id, bool fogOfWar = true)
         {
             var game = _gameRepository.Load(id);
-            var vm = CurrentTurnViewModel.FromGameContext(game, FogOfWar);
+            var gameboardViewModel = SinglePlayersViewOfTheGameboardViewModel.FromGameContext(game, fogOfWar);
+
+            var vm = new GameBoardAndSupportingUiDataViewModel(gameboardViewModel);
+
             return View(vm);
+        }
+    }
+
+    public class GameBoardAndSupportingUiDataViewModel
+    {
+        public SinglePlayersViewOfTheGameboardViewModel Gameboard { get; set; }
+
+        public GameBoardAndSupportingUiDataViewModel(SinglePlayersViewOfTheGameboardViewModel gameboard)
+        {
+            Gameboard = gameboard;
         }
     }
 

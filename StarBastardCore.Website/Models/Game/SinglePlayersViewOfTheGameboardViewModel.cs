@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using StarBastardCore.Website.Code.Game.Gameplay;
-using StarBastardCore.Website.Code.Game.Systems;
+using StarBastardCore.Website.Code.Game.Gameworld.Geography;
 
 namespace StarBastardCore.Website.Models.Game
 {
-    public class CurrentTurnViewModel
+    public class SinglePlayersViewOfTheGameboardViewModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -15,19 +15,19 @@ namespace StarBastardCore.Website.Models.Game
         public List<Player> Players { get; set; }
         public Player CurrentPlayer { get; set; }
 
-        public CurrentTurnViewModel()
+        public SinglePlayersViewOfTheGameboardViewModel()
         {
             Systems = new List<PlanetarySystem>();
             Players = new List<Player>();
         }
 
-        public static CurrentTurnViewModel FromGameContext(GameContext game, bool fogOfWar = true)
+        public static SinglePlayersViewOfTheGameboardViewModel FromGameContext(GameContext game, bool fogOfWar = true)
         {
-            var vm = new CurrentTurnViewModel
+            var vm = new SinglePlayersViewOfTheGameboardViewModel
                 {
                     Players = game.Players,
                     CurrentPlayer = game.CurrentPlayer,
-                    Round = game.Round,
+                    Round = game.Turn,
                     Id = game.Id,
                     Name = game.Name
                 };

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using StarBastardCore.Website.Code.Game.Gameplay.Actions;
-using StarBastardCore.Website.Code.Game.Systems;
-using StarBastardCore.Website.Code.Game.Units.Starships;
+using StarBastardCore.Website.Code.Game.Gameplay.GameGeneration;
+using StarBastardCore.Website.Code.Game.Gameworld.Geography;
+using StarBastardCore.Website.Code.Game.Gameworld.Units.Starships;
 
 namespace StarBastardCore.Website.Code.Game.Gameplay
 {
@@ -15,11 +16,11 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
         public ExplorationMap ExplorationMap { get; set; }
         public List<Player> Players { get; set; }
 
-        public int Round { get; private set; }
+        public int Turn { get; private set; }
 
         public Player CurrentPlayer
         {
-            get { return Round%2 != 0 ? Players[0] : Players[1]; }
+            get { return Turn%2 != 0 ? Players[0] : Players[1]; }
         }
 
         private GameContext(string name)
@@ -29,7 +30,7 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
             Players = new List<Player>();
             Systems = new List<PlanetarySystem>();
             ExplorationMap = new ExplorationMap();
-            Round = 1;
+            Turn = 1;
         }
 
         public static GameContext Create(string name)

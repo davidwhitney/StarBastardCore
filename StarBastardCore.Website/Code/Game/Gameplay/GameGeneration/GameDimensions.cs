@@ -1,4 +1,4 @@
-namespace StarBastardCore.Website.Code.Game.Systems
+namespace StarBastardCore.Website.Code.Game.Gameplay.GameGeneration
 {
     public static class GameDimensions
     {
