@@ -30,9 +30,7 @@ function gameBoardRenderer() {
                 class: 'system' + systemStyle,
                 style: 'width: ' + $boxWidth + 'px; height: ' + $boxHeight + 'px',
             }).appendTo(currentLine);
-
-            $('#system-' + system.SystemNumber).css('background-color', 'white');
-
+            
             boxesOnThisLine++;
 
             if(systemOffset == 4 || (systemOffset - 37) == 4

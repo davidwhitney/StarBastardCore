@@ -32,14 +32,26 @@ function systemDetailsRenderer() {
         $('#zoomed-orbit-ships').html('');
 
         $.each(system.Orbit, function (key, value) {
-            var item = "<div>"+ value.Name +"</div>";
-            $('#zoomed-orbit-ships').append(item);
+
+            $('<div/>', {
+                title: value.Name,
+                text: "ss",
+                class: value.Name + ' poptip',
+                style: 'width: 50px; height: 50px; background-color: green;',
+            }).appendTo('#zoomed-orbit-ships');
+            
         });
 
         $('#zoomed-city-items').html('');
         $.each(system.City, function(key, value) {
-            var item = "<div>"+ value.Name +"</div>";
-            $('#zoomed-city-items').append(item);
+            
+            $('<div/>', {
+                title: value.Name,
+                text: "building",
+                class: value.Name + ' poptip',
+                style: 'width: 50px; height: 50px; background-color: green;',
+            }).appendTo('#zoomed-city-items');
+            
         });
 
         $('#zoomed-in').fadeIn();
