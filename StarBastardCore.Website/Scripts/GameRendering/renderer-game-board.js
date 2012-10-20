@@ -26,7 +26,7 @@ function gameBoardRenderer() {
 
             $('<div/>', {
                 id: 'system-' + system.SystemNumber,
-                title: system.Name,
+                title: system.Name + "<br/> System: " + system.SystemNumber,
                 class: 'system' + systemStyle,
                 style: 'width: ' + $boxWidth + 'px; height: ' + $boxHeight + 'px',
             }).appendTo(currentLine);
