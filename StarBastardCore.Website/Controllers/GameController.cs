@@ -65,9 +65,20 @@ namespace StarBastardCore.Website.Controllers
             {
                 return new HttpUnauthorizedResult("Incorrect player.");
             }
-            
-            game.UncommittedActions.Add(action);
-            return new JsonResult {Data = game.UncommittedActions};
+
+            var ns = action.GetType().Namespace;
+            var strongType = Assembly.GetExecutingAssembly().GetTypes().Where(x => x.Namespace == ns).SingleOrDefault(x => x.Name == action.ActionName);
+            var typedInstance = (GameActionBase)Activator.CreateInstance(strongType);
+            typedInstance.Parameters = action.Parameters;
+
+            game.UncommittedActions.Add(typedInstance);
+
+            return new JsonResult
+                {
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    ContentType = "application/json",
+                    Data = game.UncommittedActions,
+                };
         }
 
         [Authorize]

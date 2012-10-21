@@ -186,6 +186,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AppSettingsWrapper.cs" />
+    <Compile Include="Code\Game\Gameplay\Actions\Build.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\GameActionBase.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\Move.cs" />
     <Compile Include="Code\Game\Gameplay\GameGeneration\GameDimensions.cs" />

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.IO;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
@@ -16,9 +17,9 @@ namespace StarBastardCore.Website.Code.ModelBinding
         {
             public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
             {
-                var stringified = controllerContext.HttpContext.Request.Form.ToString();
-                stringified = HttpUtility.UrlDecode(stringified);
-                
+                controllerContext.HttpContext.Request.InputStream.Position = 0;
+                var stringified = new StreamReader(controllerContext.HttpContext.Request.InputStream).ReadToEnd();
+
                 return string.IsNullOrEmpty(stringified)
                            ? null
                            : JsonConvert.DeserializeObject(stringified, bindingContext.ModelType);

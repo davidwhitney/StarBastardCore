@@ -71,12 +71,14 @@ function playerControls(updateUiFunction){
         $.ajax({
             type: 'POST',
             url:  window.location.pathname + '/QueueAction',
-            data: '{"ActionName":"Move","Parameters":{"DestinationPlanetId":"1_19","StarshipId":"4abb380f-12f8-4a9b-8ec2-150e48310847"}}',
-            success: function() {
-                
+            data: '{"ActionName":"Build","Parameters":{"DestinationPlanetId":"1_19","BuildingType":"'+ thingToBuild + '"}}',
+            success: function(data) {
+                alert(data);
             },
-            dataType: 'application/json'
+            contentType: 'application/json',
+            accept: 'application/json'
         });
+        
     };
     
 };
