@@ -23,6 +23,8 @@ function gameBoardRenderer() {
             if(system.Name != "Undiscovered") {
                 systemStyle = " discovered";
             }
+            
+            system.AvailableBuildingSlots = system.BuildingCap - system.City.length;
 
             $('<div/>', {
                 id: 'system-' + system.SystemNumber,

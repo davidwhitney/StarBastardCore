@@ -34,6 +34,7 @@ function systemDetailsRenderer() {
         $.each(system.Orbit, function (key, value) {
 
             $('<div/>', {
+                Id: value.Id,
                 title: value.Name,
                 text: 's',
                 class: value.Name + ' IMovableUnitPopout',
@@ -45,6 +46,7 @@ function systemDetailsRenderer() {
         $.each(system.City, function(key, value) {
             
             $('<div/>', {
+                Id: value.Id,
                 title: value.Name,
                 text: "building",
                 class: value.Name + ' poptip',
@@ -55,9 +57,12 @@ function systemDetailsRenderer() {
         
 
         $(".IMovableUnitPopout").click(function () {
+
+            var moveLink = "<a href='#' class='move-unit' id='move-"+ $(this).Id +"'>Move</a>"
+
             $(this).popover({
                 html: 'true',
-                content: 'Move',
+                content: moveLink,
             });
         });
 

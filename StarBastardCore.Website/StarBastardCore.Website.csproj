@@ -186,6 +186,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AppSettingsWrapper.cs" />
+    <Compile Include="Code\Game\Gameplay\Actions\GameActionBase.cs" />
+    <Compile Include="Code\Game\Gameplay\Actions\Move.cs" />
     <Compile Include="Code\Game\Gameplay\GameGeneration\GameDimensions.cs" />
     <Compile Include="Code\Game\Gameworld\Geography\Buildings\BuildingBase.cs" />
     <Compile Include="Code\Game\Gameworld\Geography\Buildings\Farm.cs" />
@@ -197,8 +199,8 @@
     <Compile Include="Code\Game\Gameworld\Units\Starships\ConstructionStarship.cs" />
     <Compile Include="Code\Game\Gameworld\Units\Starships\IStarship.cs" />
     <Compile Include="Code\Game\Gameplay\ExplorationMap.cs" />
-    <Compile Include="Code\Game\Gameplay\Actions\IAction.cs" />
-    <Compile Include="Code\Game\Gameplay\Actions\MoveAction.cs" />
+    <Compile Include="Code\Game\Gameplay\ActionHandlers\IActionHandler.cs" />
+    <Compile Include="Code\Game\Gameplay\ActionHandlers\MoveActionHandler.cs" />
     <Compile Include="Code\Game\Gameplay\Player.cs" />
     <Compile Include="Code\Game\Gameplay\Resources.cs" />
     <Compile Include="Code\Game\Gameplay\Visibility.cs" />
@@ -207,6 +209,7 @@
     <Compile Include="Code\Game\Gameplay\GameGeneration\SystemGenerator.cs" />
     <Compile Include="Code\Game\Gameworld\Units\IUnit.cs" />
     <Compile Include="Code\Game\Gameworld\Units\UnitBase.cs" />
+    <Compile Include="Code\ModelBinding\FromJsonModelBinder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Code\Game\Gameplay\GameContext.cs" />
     <Compile Include="Code\DataAccess\GameRepository.cs" />

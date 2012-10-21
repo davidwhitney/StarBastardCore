@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using StarBastardCore.Website.Code.Game.Gameplay.ActionHandlers;
 using StarBastardCore.Website.Code.Game.Gameplay.Actions;
 using StarBastardCore.Website.Code.Game.Gameplay.GameGeneration;
 using StarBastardCore.Website.Code.Game.Gameworld.Geography;
@@ -11,12 +13,14 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
     {
         public Guid Id { get; private set; }
         public string Name { get; set; }
+        public int Turn { get; private set; }
+
+        public List<GameActionBase> UncommittedActions { get; set; } 
 
         public List<PlanetarySystem> Systems { get; set; }
         public ExplorationMap ExplorationMap { get; set; }
         public List<Player> Players { get; set; }
 
-        public int Turn { get; private set; }
 
         public Player CurrentPlayer
         {
@@ -27,6 +31,7 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
         {
             Name = name;
             Id = Guid.NewGuid();
+            UncommittedActions = new List<GameActionBase>();
             Players = new List<Player>();
             Systems = new List<PlanetarySystem>();
             ExplorationMap = new ExplorationMap();
@@ -54,10 +59,30 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
             Players.Add(player);
             
             var startingSystem = Systems[offset + GameDimensions.StartingPlanetarySystem];
-            var moveAction = new MoveAction(startingSystem, new ConstructionStarship(player));
-            moveAction.Execute(player, this);
+            
+            var action = new Move {DestinationPlanetId = startingSystem.SystemNumber, Starship = new ConstructionStarship(player)};
+            var actionHandler = new MoveActionHandler(action);
+            actionHandler.Execute(player, this);
 
             return this;
+        }
+
+        public void EndTurn()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public static class GameContextExtensions
+    {
+        public static IStarship FindStarship(this GameContext ctx, Guid id)
+        {
+            return ctx.Systems.Select(planet => planet.Orbit.FirstOrDefault(x => x.Id == id)).FirstOrDefault(ship => ship != null);
+        }
+
+        public static PlanetarySystem FindPlanet(this GameContext ctx, string id)
+        {
+            return ctx.Systems.FirstOrDefault(x => x.SystemNumber == id);
         }
     }
 }

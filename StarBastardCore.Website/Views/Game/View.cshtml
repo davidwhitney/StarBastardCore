@@ -1,4 +1,5 @@
 ﻿@using Newtonsoft.Json
+@using StarBastardCore.Website.Code.Game.Gameplay.Actions
 @model StarBastardCore.Website.Controllers.GameBoardAndSupportingUiDataViewModel
 @{
     ViewBag.Title = "title";
@@ -68,10 +69,10 @@
                     Build <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <a href="#" class="build-farm">Build farm</a>
-                    <a href="#" class="build-mine">Build mine</a>
-                    <a href="#" class="build-sciencelab">Build sciencelab</a>
-                    <a href="#" class="build-spaceport">Build spaceprt</a>
+                    @{ var availableBuildingTypes = Model.AvailableBuildingTypes; }
+                    @foreach(var building in availableBuildingTypes) {
+                        <a href="#" class="buildCommand" data-building="@building">Build @building</a>
+                    }
                 </ul>
             </div>
         <div>
@@ -128,5 +129,15 @@
     <p>This is the filtered view for the current player.</p>
     <code>
         @(Html.Raw(json));
+    </code>
+    
+    <p>Available buildings</p>
+    <code>
+        @(Html.Raw(JsonConvert.SerializeObject(Model.AvailableBuildingTypes)))}
+    </code>
+    
+    <p>ActionExamples - Move</p>
+    <code>
+        @(Html.Raw(JsonConvert.SerializeObject(new Move{DestinationPlanetId = "1_19", StarshipId = Guid.NewGuid()})))}
     </code>
 </section>

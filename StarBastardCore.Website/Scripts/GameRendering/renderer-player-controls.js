@@ -45,7 +45,11 @@ function playerControls(updateUiFunction){
             function () {
             }
         );
-        
+
+        $('.buildCommand').click(function () {
+            var type = $(this).data('building');
+            $this.build(type);
+        });
 
     };
     
@@ -55,6 +59,24 @@ function playerControls(updateUiFunction){
 
     this.setSelectedSystem = function (system) {
         $('body').data('activeSystem', system);
+    };
+    
+    this.build = function (thingToBuild) {
+        
+        var system = $this.getSelectedSystem();
+        if(system.AvailableBuildingSlots == 0) {
+            alert('not enough slots');
+        }
+        
+        $.ajax({
+            type: 'POST',
+            url:  window.location.pathname + '/QueueAction',
+            data: '{"ActionName":"Move","Parameters":{"DestinationPlanetId":"1_19","StarshipId":"4abb380f-12f8-4a9b-8ec2-150e48310847"}}',
+            success: function() {
+                
+            },
+            dataType: 'application/json'
+        });
     };
     
 };
