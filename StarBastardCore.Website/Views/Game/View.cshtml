@@ -10,7 +10,7 @@
 </div>
 
 <div id="gameplayarea" class="row clearfix">
-    <div id="gameboard" class="span5">
+    <div id="gameboard" class="span4">
         <div id="systems"></div>
     </div>
     <div id="central-column" class="span4">
@@ -74,7 +74,7 @@
             </div>
         </div>
     </div>
-    <div id="player" class="span2">
+    <div id="player" class="span4">
         
             
         <div class="well well-small">
@@ -85,15 +85,19 @@
                 Tech income: <span id="player-tech-income"></span><br/>
             </div>
         </div>
-
-        <div>
-            <h2>Actions</h2>
-            <div id="player-actionqueue"></div>
+            
+        <div class="well well-small">
+            <h3>Turn</h3>
+            <div>
+                <button class="start-turn">Next Turn</button><br/>
+                Round: <span class="round-number"></span><br/>
+                Player: <span class="player-number"></span><br/>
+            </div>
         </div>
-        <div>
-            <button class="start-turn">Next Turn</button><br/>
-            Round: <span class="round-number"></span><br/>
-            Player: <span class="player-number"></span><br/>
+
+        <div class="well well-small">
+            <h2>Queue</h2>
+            <div id="player-actionqueue"></div>
         </div>
     </div>
 </div>
