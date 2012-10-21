@@ -67,11 +67,19 @@ function playerControls(updateUiFunction){
         if(system.AvailableBuildingSlots == 0) {
             alert('not enough slots');
         }
+
+        var postData = {
+            "ActionName": "Build",
+            "Parameters": {
+                "DestinationPlanetId": "1_19",
+                "BuildingType": thingToBuild
+            }
+        };
         
         $.ajax({
             type: 'POST',
             url:  window.location.pathname + '/QueueAction',
-            data: '{"ActionName":"Build","Parameters":{"DestinationPlanetId":"1_19","BuildingType":"'+ thingToBuild + '"}}',
+            data: JSON.stringify(postData),
             success: function(data) {
                 alert(data);
             },
