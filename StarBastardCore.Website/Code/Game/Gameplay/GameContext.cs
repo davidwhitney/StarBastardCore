@@ -69,7 +69,7 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
 
         public void EndTurn()
         {
-            throw new NotImplementedException();
+            Turn++;
         }
     }
 

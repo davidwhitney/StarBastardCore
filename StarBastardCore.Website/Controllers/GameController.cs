@@ -82,6 +82,7 @@ namespace StarBastardCore.Website.Controllers
         }
 
         [Authorize]
+        [HttpPost]
         public ActionResult EndTurn(Guid id)
         {
             var game = _gameRepository.Load(id);
@@ -93,7 +94,7 @@ namespace StarBastardCore.Website.Controllers
 
             game.EndTurn();
 
-            return new JsonResult {Data = game};
+            return RedirectToAction("View", new { id = game.Id });
         }
 
         private static List<string> GetAvailableBuildings()

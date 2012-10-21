@@ -89,7 +89,10 @@
         <div class="well well-small">
             <h3>Turn</h3>
             <div>
-                <button class="start-turn">Next Turn</button><br/>
+                @using(Html.BeginForm("EndTurn", "Game", FormMethod.Post)){
+                    <input type="submit" value="End Turn"/>
+                }
+
                 Round: <span class="round-number"></span><br/>
                 Player: <span class="player-number"></span><br/>
             </div>

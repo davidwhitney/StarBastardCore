@@ -14,7 +14,6 @@ using WebMatrix.WebData;
 namespace StarBastardCore.Website.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
