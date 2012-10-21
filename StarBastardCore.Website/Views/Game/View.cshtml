@@ -16,18 +16,23 @@
     <div id="central-column" class="span4">
         <div id="zoomed-in" style="display: none;">
             
-            <div class="page-header">
-                <h3 id="zoomed-system-name"></h3> <small>Occupied by <b id="zoomed-occupier-id"></b></small>
+            <div style="float: left;">
+                <h3 id="zoomed-system-name" style="margin: 0px; padding: 0px;"></h3>
             </div>
             
-            <div id="zoomed-keystats">
-                
+            <div id="zoomed-keystats" style="float: right;">
                 <span title="Buildings built" class="badge poptip"><span id="zoomed-number-of-buildings-built" class="keystat"></span>/<span id="zoomed-number-of-buildings-cap"></span></span>
                 <span title="Armies in battlefield" id="zoomed-number-of-armies-in-battlefield" class="keystat poptip badge badge-success"></span>
                 <span title="Ships in orbit" id="zoomed-number-of-ships-in-orbit" class="keystat poptip badge badge-warning"></span>
                 <span title="Enemy ships in orbit" id="zoomed-number-of-enemy-ships-in-orbit" class="keystat poptip badge badge-important"></span>
             </div>
+
             <div style="clear: both;"></div>
+            
+            <p>
+                <small>Occupied by <b id="zoomed-occupier-id"></b></small>
+            </p>
+
             <div id="zoomed-orbit">
                 <h2>Orbit</h2>
                 <div>
