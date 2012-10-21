@@ -39,6 +39,19 @@
             </div>
             <div id="zoomed-city">
                 <h2>City</h2>
+                            
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        Build <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @{ var availableBuildingTypes = Model.AvailableBuildingTypes; }
+                        @foreach(var building in availableBuildingTypes) {
+                            <a href="#" class="buildCommand" data-building="@building">Build @building</a>
+                        }
+                    </ul>
+                </div>
+
                 <div>
                     <div id="zoomed-city-items"></div>
                 </div>
@@ -57,24 +70,17 @@
         </div>
     </div>
     <div id="player" class="span2">
-        <h1 id="activePlayerName"></h1>
-        <div>
-            Ore  income: <span id="player-ore-income"></span><br/>
-            Food income: <span id="player-food-income"></span><br/>
-            Tech income: <span id="player-tech-income"></span><br/>
-        </div>
+        
             
-            <div class="btn-group">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    Build <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    @{ var availableBuildingTypes = Model.AvailableBuildingTypes; }
-                    @foreach(var building in availableBuildingTypes) {
-                        <a href="#" class="buildCommand" data-building="@building">Build @building</a>
-                    }
-                </ul>
+        <div class="well well-small">
+            <h3 id="activePlayerName">@Model.Gameboard.CurrentPlayer.Name</h3>
+            <div>
+                Ore  income: <span id="player-ore-income"></span><br/>
+                Food income: <span id="player-food-income"></span><br/>
+                Tech income: <span id="player-tech-income"></span><br/>
             </div>
+        </div>
+
         <div>
             <h2>Actions</h2>
             <div id="player-actionqueue"></div>
