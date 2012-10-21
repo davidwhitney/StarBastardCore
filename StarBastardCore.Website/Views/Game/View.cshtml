@@ -15,7 +15,11 @@
     </div>
     <div id="central-column" class="span4">
         <div id="zoomed-in" style="display: none;">
-            <h1 id="zoomed-system-name"></h1>
+            
+            <div class="page-header">
+                <h3 id="zoomed-system-name"></h3> <small>Occupied by <b id="zoomed-occupier-id"></b></small>
+            </div>
+            
             <div id="zoomed-keystats">
                 
                 <span title="Buildings built" class="badge poptip"><span id="zoomed-number-of-buildings-built" class="keystat"></span>/<span id="zoomed-number-of-buildings-cap"></span></span>
@@ -24,10 +28,6 @@
                 <span title="Enemy ships in orbit" id="zoomed-number-of-enemy-ships-in-orbit" class="keystat poptip badge badge-important"></span>
             </div>
             <div style="clear: both;"></div>
-            <div id="zoomed-occupier">
-                <h2>Occupier</h2>
-                <p>Player <span id="zoomed-occupier-id"></span></p>
-            </div>
             <div id="zoomed-orbit">
                 <h2>Orbit</h2>
                 <div>
