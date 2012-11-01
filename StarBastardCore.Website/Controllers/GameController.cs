@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using Newtonsoft.Json;
 using StarBastardCore.Website.Code.DataAccess;
 using StarBastardCore.Website.Code.Game.Gameplay;
-using StarBastardCore.Website.Code.Game.Gameplay.ActionHandlers;
 using StarBastardCore.Website.Code.Game.Gameplay.Actions;
-using StarBastardCore.Website.Code.Game.Gameplay.GameGeneration;
 using StarBastardCore.Website.Code.Game.Gameworld.Geography.Buildings;
 using StarBastardCore.Website.Code.ModelBinding;
 using StarBastardCore.Website.Models.Game;
@@ -20,30 +15,11 @@ namespace StarBastardCore.Website.Controllers
 {
     public class GameController : Controller
     {
-        private readonly SystemGenerator _generator;
         private readonly GameRepository _gameRepository;
 
-        public GameController(SystemGenerator generator, GameRepository gameRepository)
+        public GameController(GameRepository gameRepository)
         {
-            _generator = generator;
             _gameRepository = gameRepository;
-        }
-
-        [Authorize]
-        public RedirectToRouteResult Create()
-        {
-            var game = GameContext.Create(NamesRepository.RandomName())
-                                    .WithSystems(_generator.Generate());
-
-            game.AddPlayer(WebSecurityEx.IsAuthenticated()
-                               ? new Player(WebSecurity.CurrentUserId, WebSecurity.CurrentUserName)
-                               : Player.UnauthenticatedPlayer1);
-
-            game.AddPlayer(Player.UnauthenticatedPlayer2);
-
-            _gameRepository.Save(game);
-
-            return RedirectToAction("View", new { id = game.Id });
         }
 
         [Authorize]

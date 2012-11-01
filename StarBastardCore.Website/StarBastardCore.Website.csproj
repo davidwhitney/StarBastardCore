@@ -214,6 +214,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Code\Game\Gameplay\GameContext.cs" />
     <Compile Include="Code\DataAccess\GameRepository.cs" />
+    <Compile Include="Controllers\LobbyController.cs" />
     <Compile Include="Models\Game\SinglePlayersViewOfTheGameboardViewModel.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -297,6 +298,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Game\Create.cshtml" />
     <Content Include="Views\Game\View.cshtml" />
+    <Content Include="Views\Lobby\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
