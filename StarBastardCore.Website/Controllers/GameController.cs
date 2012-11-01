@@ -29,6 +29,7 @@ namespace StarBastardCore.Website.Controllers
             _gameRepository = gameRepository;
         }
 
+        [Authorize]
         public RedirectToRouteResult Create()
         {
             var game = GameContext.Create(NamesRepository.RandomName())
@@ -45,13 +46,17 @@ namespace StarBastardCore.Website.Controllers
             return RedirectToAction("View", new { id = game.Id });
         }
 
+        [Authorize]
         public ActionResult View(Guid id, bool fogOfWar = true)
         {
             var game = _gameRepository.Load(id);
             var gameboardViewModel = SinglePlayersViewOfTheGameboardViewModel.FromGameContext(game, fogOfWar);
 
-            var vm = new GameBoardAndSupportingUiDataViewModel(gameboardViewModel);
-            vm.AvailableBuildingTypes = GetAvailableBuildings(); // Filter for current player for tech trees.
+            var vm = new GameBoardAndSupportingUiDataViewModel(gameboardViewModel)
+                {
+                    AvailableBuildingTypes = GetAvailableBuildings(),
+                    LoggedInPlayer = game.Players.Single(x => x.UserId == WebSecurity.CurrentUserId)
+                };
 
             return View(vm);
         }
@@ -87,12 +92,10 @@ namespace StarBastardCore.Website.Controllers
         {
             var game = _gameRepository.Load(id);
 
-            if (game.CurrentPlayer.UserId != WebSecurity.CurrentUserId)
+            if (game.CurrentPlayer.UserId == WebSecurity.CurrentUserId)
             {
-                return new HttpUnauthorizedResult("Incorrect player.");
+                game.EndTurn();
             }
-
-            game.EndTurn();
 
             return RedirectToAction("View", new { id = game.Id });
         }
@@ -118,6 +121,7 @@ namespace StarBastardCore.Website.Controllers
     {
         public SinglePlayersViewOfTheGameboardViewModel Gameboard { get; set; }
         public List<string> AvailableBuildingTypes { get; set; }
+        public Player LoggedInPlayer { get; set; }
 
         public GameBoardAndSupportingUiDataViewModel(SinglePlayersViewOfTheGameboardViewModel gameboard)
         {

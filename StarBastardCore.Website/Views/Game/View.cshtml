@@ -78,11 +78,11 @@
         
             
         <div class="well well-small">
-            <h3 id="activePlayerName">@Model.Gameboard.CurrentPlayer.Name</h3>
+            <h3 id="activePlayerName">@Model.LoggedInPlayer.Name</h3>
             <div>
-                Ore  income: <span id="player-ore-income"></span><br/>
-                Food income: <span id="player-food-income"></span><br/>
-                Tech income: <span id="player-tech-income"></span><br/>
+                Ore  income: <span id="player-ore-income">@Model.LoggedInPlayer.Resources.Ore</span><br/>
+                Food income: <span id="player-food-income">@Model.LoggedInPlayer.Resources.Food</span><br/>
+                Tech income: <span id="player-tech-income">@Model.LoggedInPlayer.Resources.Tech</span><br/>
             </div>
         </div>
             
@@ -93,8 +93,8 @@
                     <input type="submit" value="End Turn"/>
                 }
 
-                Round: <span class="round-number"></span><br/>
-                Player: <span class="player-number"></span><br/>
+                Round: <span class="round-number">@Model.Gameboard.Round</span><br/>
+                Player: <span class="player-number">@Model.Gameboard.CurrentPlayer.Name</span><br/>
             </div>
         </div>
 
@@ -110,7 +110,8 @@
 <div class="clearfix"></div>
 <div id="systemsSummary"></div>
             
-@{ var json = JsonConvert.SerializeObject(Model.Gameboard); }
+@{ var loggedInPlayerJson = JsonConvert.SerializeObject(Model.LoggedInPlayer); }
+@{ var gameBoardJson = JsonConvert.SerializeObject(Model.Gameboard); }
 @section scripts {
 
     @Scripts.Render("~/bundles/game-renderer")
@@ -123,7 +124,8 @@
             var $gameboardRenderer = new gameBoardRenderer();
 
             
-            var gameboard = @(Html.Raw(json));
+            var gameboard = @(Html.Raw(gameBoardJson));
+            var loggedInPlayer = @(Html.Raw(loggedInPlayerJson));
             
             window.gameboard = gameboard.Systems;
             window.context = gameboard;
@@ -132,7 +134,7 @@
 
             var $playerControls = new playerControls(function(ctx) {
                 $systemDetailsRenderer.render(ctx, $playerControls.getSelectedSystem());
-                $playerStatusRenderer.render(context, context.CurrentPlayer);
+                $playerStatusRenderer.render(context, loggedInPlayer);
             });
             
             $playerControls.bindToUi();
@@ -146,7 +148,7 @@
     <h2>Debug - World Model</h2>
     <p>This is the filtered view for the current player.</p>
     <code>
-        @(Html.Raw(json));
+        @(Html.Raw(gameBoardJson));
     </code>
     
     <p>Available buildings</p>
