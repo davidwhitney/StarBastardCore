@@ -5,6 +5,7 @@ using Ninject;
 using Ninject.Web.Common;
 using StarBastardCore.Website.App_Start;
 using StarBastardCore.Website.Code;
+using StarBastardCore.Website.Code.DataAccess;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
@@ -44,6 +45,7 @@ namespace StarBastardCore.Website.App_Start
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
             kernel.Bind<IAppSettings>().ToMethod(x=> new AppSettingsWrapper(System.Configuration.ConfigurationManager.AppSettings));
+            kernel.Bind<IDb>().To<Db>().InRequestScope();
             
             RegisterServices(kernel);
             return kernel;

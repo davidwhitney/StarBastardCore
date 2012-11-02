@@ -1,0 +1,26 @@
+﻿@model List<StarBastardCore.Website.Models.Lobby.PotentialOpponent>
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Find opponent</h2>
+
+<b>@WebSecurity.CurrentUserName</b> vs. <b>???</b>
+
+<div class="well">
+    @using(Html.BeginForm("SearchForPlayer", "Lobby", FormMethod.Post))
+    {
+        @Html.TextBox("name")
+        <input type="submit" value="Search"/>
+    }
+    
+    @foreach(var potentialMatch in Model)
+    {
+        using (Html.BeginForm("CreateGame", "Lobby", FormMethod.Post))
+        {
+            @Html.Hidden("opponentId", potentialMatch.UserId)
+            @: @potentialMatch.UserName <input type="submit" value="Create Game"/>
+        }
+    }
+
+</div>
