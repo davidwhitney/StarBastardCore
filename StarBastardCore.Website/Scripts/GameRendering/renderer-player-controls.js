@@ -81,7 +81,13 @@ function playerControls(updateUiFunction){
             url:  window.location.pathname + '/QueueAction',
             data: JSON.stringify(postData),
             success: function(data) {
-                alert(data);
+
+                data.forEach(function(item) {
+                    var markup = item.ActionName + ", " + item.BuildingType + "<br/>";
+                    $('#player-actionqueue').append(markup);
+                });
+
+
             },
             contentType: 'application/json',
             accept: 'application/json'

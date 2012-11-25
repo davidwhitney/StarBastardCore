@@ -100,7 +100,12 @@
 
         <div class="well well-small">
             <h2>Queue</h2>
-            <div id="player-actionqueue"></div>
+            <div id="player-actionqueue">
+                @foreach (var action in Model.Gameboard.UncomittedActions)
+                {
+                    @: @action.ActionName @string.Join(", ", action.Parameters.Values)<br />
+                }
+            </div>
         </div>
     </div>
 </div>
