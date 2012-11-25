@@ -58,7 +58,7 @@ function systemDetailsRenderer() {
 
         $(".IMovableUnitPopout").click(function () {
 
-            var moveLink = "<a href='#' class='move-unit' id='move-"+ $(this).Id +"'>Move</a>"
+            var moveLink = "<a href='#' class='move-unit' id='move-" + $(this).Id + "'>Move</a>";
 
             $(this).popover({
                 html: 'true',

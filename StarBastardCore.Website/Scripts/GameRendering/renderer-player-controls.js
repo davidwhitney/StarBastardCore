@@ -71,7 +71,7 @@ function playerControls(updateUiFunction){
         var postData = {
             "ActionName": "Build",
             "Parameters": {
-                "DestinationPlanetId": "1_19",
+                "DestinationPlanetId": system.SystemNumber,
                 "BuildingType": thingToBuild
             }
         };

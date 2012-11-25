@@ -77,7 +77,20 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
             return this;
         }
 
+        private void BeginTurn()
+        {
+            Turn++;
+        }
+
         public void EndTurn()
+        {
+            TakeAction();
+            IncrementNextPlayersResources();
+
+            Turn++;
+        }
+
+        private void TakeAction()
         {
             foreach (var action in UncommittedActions)
             {
@@ -85,8 +98,16 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
             }
 
             UncommittedActions.Clear();
+        }
 
-            Turn++;
+        private void IncrementNextPlayersResources()
+        {
+            var otherPlayer = Players.Single(x => x != CurrentPlayer);
+            foreach (var system in Systems.Where(x => x.Owner == otherPlayer))
+            {
+                var resourceModifications = system.ResourceIncreasePrediction;
+                otherPlayer.Resources.Modify(resourceModifications);
+            }
         }
     }
 
