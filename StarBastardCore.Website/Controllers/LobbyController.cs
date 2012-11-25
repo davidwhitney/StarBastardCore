@@ -15,13 +15,13 @@ namespace StarBastardCore.Website.Controllers
     {
         private readonly IDb _db;
         private readonly SystemGenerator _generator;
-        private readonly Repository<GameContext> _gameRepository;
+        private readonly Storage _gameStorage;
 
-        public LobbyController(IDb db, SystemGenerator generator, Repository<GameContext> gameRepository)
+        public LobbyController(IDb db, SystemGenerator generator, Storage gameStorage)
         {
             _db = db;
             _generator = generator;
-            _gameRepository = gameRepository;
+            _gameStorage = gameStorage;
         }
 
         public ActionResult Index()
@@ -62,7 +62,7 @@ namespace StarBastardCore.Website.Controllers
             game.AddPlayer(new Player(WebSecurity.CurrentUserId, WebSecurity.CurrentUserName));
             game.AddPlayer(new Player(opponentId, opponent.UserName.ToString()));
 
-            _gameRepository.Save(game);
+            _gameStorage.Save(game);
 
             return RedirectToAction("View", "Game", new { id = game.Id });
         }

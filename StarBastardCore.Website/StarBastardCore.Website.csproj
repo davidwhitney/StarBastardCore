@@ -196,7 +196,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AppSettingsWrapper.cs" />
     <Compile Include="Code\DataAccess\Db.cs" />
-    <Compile Include="Code\DataAccess\Repository.cs" />
+    <Compile Include="Code\DataAccess\Storage.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\Build.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\GameActionBase.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\Move.cs" />

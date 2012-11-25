@@ -4,11 +4,11 @@ using System.Web;
 
 namespace StarBastardCore.Website.Code.DataAccess
 {
-    public class Repository<TType> where TType : ICanBeSaved
+    public class Storage
     {        
         private readonly HttpContextBase _ctx;
 
-        public Repository(HttpContextBase ctx)
+        public Storage(HttpContextBase ctx)
         {
             _ctx = ctx;
             if (_ctx.Session == null)
@@ -17,13 +17,13 @@ namespace StarBastardCore.Website.Code.DataAccess
             }
         }
 
-        public TType Load(Guid id)
+        public TType Load<TType>(Guid id) where TType : ICanBeSaved
         {
             var key = typeof(TType).Name + "_" + id;
             return (TType)_ctx.Application.Contents[key];
         }
 
-        public TType Save(TType item)
+        public TType Save<TType>(TType item) where TType : ICanBeSaved
         {
             var key = typeof(TType).Name + "_" + item.Id;
 

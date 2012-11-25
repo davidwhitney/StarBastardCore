@@ -15,17 +15,17 @@ namespace StarBastardCore.Website.Controllers
 {
     public class GameController : Controller
     {
-        private readonly Repository<GameContext> _gameRepository;
+        private readonly Storage _gameStorage;
 
-        public GameController(Repository<GameContext> gameRepository)
+        public GameController(Storage gameStorage)
         {
-            _gameRepository = gameRepository;
+            _gameStorage = gameStorage;
         }
 
         [Authorize]
         public ActionResult View(Guid id, bool fogOfWar = true)
         {
-            var game = _gameRepository.Load(id);
+            var game = _gameStorage.Load<GameContext>(id);
             var gameboardViewModel = SinglePlayersViewOfTheGameboardViewModel.FromGameContext(game, fogOfWar);
 
             var vm = new GameBoardAndSupportingUiDataViewModel(gameboardViewModel)
@@ -40,7 +40,7 @@ namespace StarBastardCore.Website.Controllers
         [Authorize]
         public ActionResult QueueAction(Guid id, [FromJson] GameActionBase action)
         {
-            var game = _gameRepository.Load(id);
+            var game = _gameStorage.Load<GameContext>(id);
 
             if (game.CurrentPlayer.UserId != WebSecurity.CurrentUserId)
             {
@@ -66,7 +66,7 @@ namespace StarBastardCore.Website.Controllers
         [HttpPost]
         public ActionResult EndTurn(Guid id)
         {
-            var game = _gameRepository.Load(id);
+            var game = _gameStorage.Load<GameContext>(id);
 
             if (game.CurrentPlayer.UserId == WebSecurity.CurrentUserId)
             {
