@@ -11,7 +11,7 @@
     <h2>My Active Games</h2>
     
     @foreach (var game in Model.ActiveGames) {
-    @: GameId: @game
+    @: @Html.ActionLink(game.Name, "View", "Game", new { id = game.Id}, new{}) (@game.Players.First().Name vs @game.Players.Skip(1).First().Name) <br/>
     }
 
 </div>

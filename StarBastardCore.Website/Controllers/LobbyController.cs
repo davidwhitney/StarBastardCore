@@ -61,21 +61,29 @@ namespace StarBastardCore.Website.Controllers
                                     .WithSystems(_generator.Generate());
 
             var opponent = _db.X.UserProfile.FindByUserId(opponentId);
-
-            game.AddPlayer(new Player(WebSecurity.CurrentUserId, WebSecurity.CurrentUserName));
-            game.AddPlayer(new Player(opponentId, opponent.UserName.ToString()));
+            var player1 = new Player(WebSecurity.CurrentUserId, WebSecurity.CurrentUserName);
+            var player2 = new Player(opponentId, opponent.UserName.ToString());
+            
+            game.AddPlayer(player1);
+            game.AddPlayer(player2);
 
             _storage.Save(game);
 
             var playerOneProfile = _storage.GetOrEmpty<ExtendedUserProfile>(WebSecurity.CurrentUserId);
             var playerTwoProfile = _storage.GetOrEmpty<ExtendedUserProfile>(opponentId);
 
-            playerOneProfile.ActiveGames.Add((Guid)game.Id);
-            playerTwoProfile.ActiveGames.Add((Guid)game.Id);
+            var activeGameReference = new ActiveGameReference
+                {
+                    Id = (Guid) game.Id,
+                    Name = game.Name,
+                    Players = new List<Player> { player1, player2 }
+                };
+
+            playerOneProfile.ActiveGames.Add(activeGameReference);
+            playerTwoProfile.ActiveGames.Add(activeGameReference);
 
             _storage.Save(playerOneProfile);
             _storage.Save(playerTwoProfile);
-
 
             return RedirectToAction("View", "Game", new { id = game.Id });
         }
