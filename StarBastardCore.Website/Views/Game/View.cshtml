@@ -146,8 +146,24 @@
             
         });
     </script>
-}
+    
 
+    <script src="/signalr/hubs" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var socket = $.connection.clientPushHub;
+            
+            socket.client.refresh = function (data) {
+                document.location.reload(true);
+            };
+            
+            $.connection.hub.start(function () {
+                socket.server.registerForUpdates("@Model.Gameboard.Id");
+            });
+            
+        });
+    </script>
+}
 
 <section>
     <h2>Debug - World Model</h2>

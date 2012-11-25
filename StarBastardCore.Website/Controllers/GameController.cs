@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
+using Microsoft.AspNet.SignalR;
 using StarBastardCore.Website.Code.DataAccess;
 using StarBastardCore.Website.Code.Game.Gameplay;
 using StarBastardCore.Website.Code.Game.Gameplay.Actions;
 using StarBastardCore.Website.Code.Game.Gameworld.Geography.Buildings;
 using StarBastardCore.Website.Code.ModelBinding;
 using StarBastardCore.Website.Models.Game;
+using StarBastardCore.Website.SignalrHub;
 using WebMatrix.WebData;
 
 namespace StarBastardCore.Website.Controllers
@@ -73,6 +75,9 @@ namespace StarBastardCore.Website.Controllers
             {
                 game.EndTurn();
             }
+
+            var hub = new ClientPushHub();
+            hub.ForceClientRefresh(id, GlobalHost.ConnectionManager.GetHubContext<ClientPushHub>());
 
             return RedirectToAction("View", new { id = game.Id });
         }
