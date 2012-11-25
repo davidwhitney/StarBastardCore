@@ -30,6 +30,11 @@ namespace StarBastardCore.Website.Code.Game.Gameplay.Actions
             }
         }
 
+        public virtual void Commit(GameContext entireContext)
+        {
+            throw new InvalidOperationException("Implemente me in derived type.");
+        }
+
         public TType Item<TType>(string key)
         {
             if(!Parameters.ContainsKey(key))

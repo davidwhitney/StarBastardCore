@@ -1,3 +1,6 @@
+using System.Linq;
+using StarBastardCore.Website.Code.Game.Gameworld.Geography.Buildings;
+
 namespace StarBastardCore.Website.Code.Game.Gameplay.Actions
 {
     public class Build : GameActionBase
@@ -16,6 +19,18 @@ namespace StarBastardCore.Website.Code.Game.Gameplay.Actions
 
         public Build()
         {
+        }
+
+        public override void Commit(GameContext entireContext)
+        {
+            var system = entireContext.Systems.Single(x => x.SystemNumber == DestinationPlanetId);
+            
+            if (!system.CanBuild)
+            {
+                return;
+            }
+
+            system.City.Add(new Farm());
         }
 
         public Build(GameActionBase action)

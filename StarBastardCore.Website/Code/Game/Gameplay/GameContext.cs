@@ -70,6 +70,13 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
 
         public void EndTurn()
         {
+            foreach (var action in UncommittedActions)
+            {
+                action.Commit(this);
+            }
+
+            UncommittedActions.Clear();
+
             Turn++;
         }
     }
