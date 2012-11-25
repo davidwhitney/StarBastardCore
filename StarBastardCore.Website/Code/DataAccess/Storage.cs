@@ -17,7 +17,32 @@ namespace StarBastardCore.Website.Code.DataAccess
             }
         }
 
-        public TType Load<TType>(Guid id) where TType : ICanBeSaved
+        public TType GetOrEmpty<TType>(object id) where TType : ICanBeSaved, new()
+        {
+            var key = typeof(TType).Name + "_" + id;
+
+            if (!_ctx.Application.Contents.AllKeys.Contains(key))
+            {
+                var newType = new TType { Id = id };
+                return Save(newType);
+            }
+
+            return (TType)_ctx.Application.Contents[key];
+        }
+
+        public TType Get<TType>(object id) where TType : ICanBeSaved, new()
+        {
+            var key = typeof(TType).Name + "_" + id;
+
+            if (!_ctx.Application.Contents.AllKeys.Contains(key))
+            {
+                return default(TType);
+            }
+
+            return (TType)_ctx.Application.Contents[key];
+        }
+
+        public TType Load<TType>(object id) where TType : ICanBeSaved
         {
             var key = typeof(TType).Name + "_" + id;
             return (TType)_ctx.Application.Contents[key];

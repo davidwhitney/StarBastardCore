@@ -1,4 +1,5 @@
-﻿@{
+﻿@model StarBastardCore.Website.Code.Game.PlayerData.ExtendedUserProfile
+@{
     ViewBag.Title = "My Lobby";
 }
 
@@ -6,6 +7,15 @@
 
 <a href="@Url.Action("Create", "Lobby")" class="btn btn-primary">New Game</a>
 
-<h2>My Active Games</h2>
+<div>
+    <h2>My Active Games</h2>
+    
+    @foreach (var game in Model.ActiveGames) {
+    @: GameId: @game
+    }
 
-<h2>Invites</h2>
+</div>
+
+<div>
+    <h2>Invites</h2>
+</div>

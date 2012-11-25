@@ -4,7 +4,7 @@ namespace StarBastardCore.Website.Code.DataAccess
 {
     public interface ICanBeSaved
     {
-        Guid Id { get; }
+        object Id { get; set; }
     }
 
 }

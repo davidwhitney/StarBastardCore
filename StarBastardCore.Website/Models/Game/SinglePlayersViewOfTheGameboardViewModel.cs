@@ -28,7 +28,7 @@ namespace StarBastardCore.Website.Models.Game
                     Players = game.Players,
                     CurrentPlayer = game.CurrentPlayer,
                     Round = game.Turn,
-                    Id = game.Id,
+                    Id = (Guid)game.Id,
                     Name = game.Name
                 };
 

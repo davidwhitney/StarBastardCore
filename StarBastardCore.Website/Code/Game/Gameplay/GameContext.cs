@@ -12,7 +12,7 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
 {
     public class GameContext : ICanBeSaved
     {
-        public Guid Id { get; private set; }
+        public object Id { get; set; }
         public string Name { get; set; }
         public int Turn { get; private set; }
 

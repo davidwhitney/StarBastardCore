@@ -221,6 +221,7 @@
     <Compile Include="Code\Game\Gameplay\GameGeneration\SystemGenerator.cs" />
     <Compile Include="Code\Game\Gameworld\Units\IUnit.cs" />
     <Compile Include="Code\Game\Gameworld\Units\UnitBase.cs" />
+    <Compile Include="Code\Game\PlayerData\ExtendedUserProfile.cs" />
     <Compile Include="Code\ModelBinding\FromJsonModelBinder.cs" />
     <Compile Include="Code\UserProfile\GameInvite.cs" />
     <Compile Include="Code\UserProfile\UserProfileData.cs" />

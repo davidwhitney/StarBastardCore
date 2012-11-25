@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using StarBastardCore.Website.Code.DataAccess;
 using StarBastardCore.Website.Code.Game.Gameplay;
 using StarBastardCore.Website.Code.Game.Gameplay.GameGeneration;
+using StarBastardCore.Website.Code.Game.PlayerData;
 using StarBastardCore.Website.Models.Lobby;
 using WebMatrix.WebData;
 
@@ -15,18 +17,19 @@ namespace StarBastardCore.Website.Controllers
     {
         private readonly IDb _db;
         private readonly SystemGenerator _generator;
-        private readonly Storage _gameStorage;
+        private readonly Storage _storage;
 
-        public LobbyController(IDb db, SystemGenerator generator, Storage gameStorage)
+        public LobbyController(IDb db, SystemGenerator generator, Storage storage)
         {
             _db = db;
             _generator = generator;
-            _gameStorage = gameStorage;
+            _storage = storage;
         }
 
         public ActionResult Index()
         {
-            return View();
+            var myProfile = _storage.GetOrEmpty<ExtendedUserProfile>(WebSecurity.CurrentUserId);
+            return View(myProfile);
         }
 
         [HttpGet]
@@ -62,7 +65,17 @@ namespace StarBastardCore.Website.Controllers
             game.AddPlayer(new Player(WebSecurity.CurrentUserId, WebSecurity.CurrentUserName));
             game.AddPlayer(new Player(opponentId, opponent.UserName.ToString()));
 
-            _gameStorage.Save(game);
+            _storage.Save(game);
+
+            var playerOneProfile = _storage.GetOrEmpty<ExtendedUserProfile>(WebSecurity.CurrentUserId);
+            var playerTwoProfile = _storage.GetOrEmpty<ExtendedUserProfile>(opponentId);
+
+            playerOneProfile.ActiveGames.Add((Guid)game.Id);
+            playerTwoProfile.ActiveGames.Add((Guid)game.Id);
+
+            _storage.Save(playerOneProfile);
+            _storage.Save(playerTwoProfile);
+
 
             return RedirectToAction("View", "Game", new { id = game.Id });
         }
