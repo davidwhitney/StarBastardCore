@@ -1,6 +1,7 @@
 using System;
 using System.Web;
 using StarBastardCore.Website.Code.Game.Gameplay;
+using System.Linq;
 
 namespace StarBastardCore.Website.Code.DataAccess
 {
@@ -19,12 +20,22 @@ namespace StarBastardCore.Website.Code.DataAccess
 
         public GameContext Load(Guid gameId)
         {
-            return (GameContext) _ctx.Session["game_" + gameId];
+            //return (GameContext) _ctx.Session["game_" + gameId];
+            return (GameContext) _ctx.Application.Contents["game_" + gameId];
         }
 
         public GameContext Save(GameContext game)
         {
-            _ctx.Session["game_" + game.Id] = game;
+            var gameKey = "game_" + game.Id;
+
+            if (_ctx.Application.Contents.AllKeys.Contains(gameKey))
+            {
+                _ctx.Application.Contents.Remove(gameKey);
+            }
+
+            _ctx.Application.Contents.Add(gameKey, game);
+
+            //_ctx.Session["game_" + game.Id] = game;
             return game;
         }
     }
