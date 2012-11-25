@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using StarBastardCore.Website.Code.DataAccess;
 using StarBastardCore.Website.Code.Game.Gameplay.ActionHandlers;
 using StarBastardCore.Website.Code.Game.Gameplay.Actions;
 using StarBastardCore.Website.Code.Game.Gameplay.GameGeneration;
@@ -9,7 +10,7 @@ using StarBastardCore.Website.Code.Game.Gameworld.Units.Starships;
 
 namespace StarBastardCore.Website.Code.Game.Gameplay
 {
-    public class GameContext
+    public class GameContext : ICanBeSaved
     {
         public Guid Id { get; private set; }
         public string Name { get; set; }

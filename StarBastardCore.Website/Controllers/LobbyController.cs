@@ -15,9 +15,9 @@ namespace StarBastardCore.Website.Controllers
     {
         private readonly IDb _db;
         private readonly SystemGenerator _generator;
-        private readonly GameRepository _gameRepository;
+        private readonly Repository<GameContext> _gameRepository;
 
-        public LobbyController(IDb db, SystemGenerator generator, GameRepository gameRepository)
+        public LobbyController(IDb db, SystemGenerator generator, Repository<GameContext> gameRepository)
         {
             _db = db;
             _generator = generator;

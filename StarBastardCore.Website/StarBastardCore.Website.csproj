@@ -196,6 +196,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AppSettingsWrapper.cs" />
     <Compile Include="Code\DataAccess\Db.cs" />
+    <Compile Include="Code\DataAccess\Repository.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\Build.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\GameActionBase.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\Move.cs" />
@@ -225,7 +226,7 @@
     <Compile Include="Code\UserProfile\UserProfileData.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Code\Game\Gameplay\GameContext.cs" />
-    <Compile Include="Code\DataAccess\GameRepository.cs" />
+    <Compile Include="Code\DataAccess\ICanBeSaved.cs" />
     <Compile Include="Controllers\LobbyController.cs" />
     <Compile Include="Models\Game\SinglePlayersViewOfTheGameboardViewModel.cs" />
     <Compile Include="Controllers\GameController.cs" />

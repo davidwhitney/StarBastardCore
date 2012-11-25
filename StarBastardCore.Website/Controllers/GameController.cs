@@ -15,9 +15,9 @@ namespace StarBastardCore.Website.Controllers
 {
     public class GameController : Controller
     {
-        private readonly GameRepository _gameRepository;
+        private readonly Repository<GameContext> _gameRepository;
 
-        public GameController(GameRepository gameRepository)
+        public GameController(Repository<GameContext> gameRepository)
         {
             _gameRepository = gameRepository;
         }
