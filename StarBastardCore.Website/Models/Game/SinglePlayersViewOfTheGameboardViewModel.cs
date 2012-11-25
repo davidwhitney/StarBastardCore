@@ -25,7 +25,7 @@ namespace StarBastardCore.Website.Models.Game
             UncomittedActions = new List<GameActionBase>();
         }
 
-        public static SinglePlayersViewOfTheGameboardViewModel FromGameContext(GameContext game, bool fogOfWar = true)
+        public static SinglePlayersViewOfTheGameboardViewModel FromGameContext(GameContext game, Player loggedInPlayer, bool fogOfWar = true)
         {
             var vm = new SinglePlayersViewOfTheGameboardViewModel
                 {
@@ -42,17 +42,20 @@ namespace StarBastardCore.Website.Models.Game
                 var planetExplorationHistory = game.ExplorationMap[system];
 
                 var systemToAdd = fogOfWar
-                                      ? (planetExplorationHistory.PlayerCanSeeSystem(game.CurrentPlayer)
+                                      ? (planetExplorationHistory.PlayerCanSeeSystem(loggedInPlayer)
                                              ? system
                                              : PlanetarySystem.UndiscoveredSystem(system.SystemNumber))
                                       : system;
 
                 vm.Systems.Add(systemToAdd);
             }
-            
-            foreach (var action in game.UncommittedActions)
+
+            if (game.CurrentPlayer == loggedInPlayer)
             {
-                vm.UncomittedActions.Add(action);
+                foreach (var action in game.UncommittedActions)
+                {
+                    vm.UncomittedActions.Add(action);
+                }
             }
 
             return vm;

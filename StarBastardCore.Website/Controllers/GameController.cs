@@ -26,7 +26,8 @@ namespace StarBastardCore.Website.Controllers
         public ActionResult View(Guid id, bool fogOfWar = true)
         {
             var game = _gameStorage.Load<GameContext>(id);
-            var gameboardViewModel = SinglePlayersViewOfTheGameboardViewModel.FromGameContext(game, fogOfWar);
+            var loggedInPlayer = game.Players.Single(x => x.UserId == WebSecurity.CurrentUserId);
+            var gameboardViewModel = SinglePlayersViewOfTheGameboardViewModel.FromGameContext(game, loggedInPlayer, fogOfWar);
 
             var vm = new GameBoardAndSupportingUiDataViewModel(gameboardViewModel)
                 {

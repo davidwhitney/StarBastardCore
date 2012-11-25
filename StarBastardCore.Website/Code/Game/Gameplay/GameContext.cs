@@ -25,7 +25,16 @@ namespace StarBastardCore.Website.Code.Game.Gameplay
 
         public Player CurrentPlayer
         {
-            get { return Turn%2 != 0 ? Players[0] : Players[1]; }
+            get
+            {
+                if (Turn == 1)
+                {
+                    return Players[0];
+                }
+
+                var turnDivisor = Turn%2;
+                return turnDivisor != 0 ? Players[0] : Players[1];
+            }
         }
 
         private GameContext(string name)
