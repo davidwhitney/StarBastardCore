@@ -165,20 +165,28 @@
     </script>
 }
 
-<section>
-    <h2>Debug - World Model</h2>
-    <p>This is the filtered view for the current player.</p>
-    <code>
-        @(Html.Raw(gameBoardJson));
-    </code>
+
+<div style="padding-top: 25px;">
+    <div>
+        <a href="#" onclick="$('#debug').show()">Show Debug</a>
+    </div>
+    <div>
+        <section id="debug" style="display: none;">
+            <h2>Debug - World Model</h2>
+            <p>This is the filtered view for the current player.</p>
+            <code>
+                @(Html.Raw(gameBoardJson));
+            </code>
     
-    <p>Available buildings</p>
-    <code>
-        @(Html.Raw(JsonConvert.SerializeObject(Model.AvailableBuildingTypes)))}
-    </code>
+            <p>Available buildings</p>
+            <code>
+                @(Html.Raw(JsonConvert.SerializeObject(Model.AvailableBuildingTypes)))}
+            </code>
     
-    <p>ActionExamples - Move</p>
-    <code>
-        @(Html.Raw(JsonConvert.SerializeObject(new Move{DestinationPlanetId = "1_19", StarshipId = Guid.NewGuid()})))}
-    </code>
-</section>
+            <p>ActionExamples - Move</p>
+            <code>
+                @(Html.Raw(JsonConvert.SerializeObject(new Move{DestinationPlanetId = "1_19", StarshipId = Guid.NewGuid()})))}
+            </code>
+        </section>
+    </div>
+</div>
