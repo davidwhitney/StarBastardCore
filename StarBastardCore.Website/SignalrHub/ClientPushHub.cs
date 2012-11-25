@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 
 namespace StarBastardCore.Website.SignalrHub
@@ -9,6 +10,7 @@ namespace StarBastardCore.Website.SignalrHub
     public class ClientPushHub : Hub
     {
         private static readonly ClientRegistry Registry = new ClientRegistry();
+
 
         public void RegisterForUpdates(Guid gameId)
         {
@@ -22,16 +24,23 @@ namespace StarBastardCore.Website.SignalrHub
             return base.OnDisconnected();
         }
 
-        public void ForceClientRefresh(Guid gameId, IHubContext context = null)
+        public void ForceClientRefresh(Guid gameId, IHubContext ctx = null)
         {
-            var clients = context == null ? Clients : context.Clients;
-
             foreach (var registration in Registry.ClientToGames.Where(x => x.Value == gameId))
             {
-                clients.Client(registration.Key).refresh();
+                ctx.Clients().Client(registration.Key).refresh();
             }
         }
+    }
 
+    public static class ExtensionsForClients
+    {
+        public static IHubConnectionContext Clients(this IHubContext passedClient)
+        {
+            return passedClient == null
+                       ? GlobalHost.ConnectionManager.GetHubContext<ClientPushHub>().Clients
+                       : passedClient.Clients;
+        }
     }
 
     public class ClientRegistry
