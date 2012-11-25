@@ -1,4 +1,5 @@
-﻿@model StarBastardCore.Website.Code.Game.PlayerData.ExtendedUserProfile
+﻿@using StarBastardCore.Website.Code
+@model StarBastardCore.Website.Code.UserProfile.UserProfileData
 @{
     ViewBag.Title = "My Lobby";
 }
@@ -11,7 +12,7 @@
     <h2>My Active Games</h2>
     
     @foreach (var game in Model.ActiveGames) {
-    @: @Html.ActionLink(game.Name, "View", "Game", new { id = game.Id}, new{}) (@game.Players.First().Name vs @game.Players.Skip(1).First().Name) <br/>
+    @: @Html.ActionLink(game.Name, "View", "Game", new { id = game.Id}, new{}) (@game.Players.One().Name vs @game.Players.Two().Name) <br/>
     }
 
 </div>

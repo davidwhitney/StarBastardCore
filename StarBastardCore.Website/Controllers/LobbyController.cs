@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using StarBastardCore.Website.Code.DataAccess;
 using StarBastardCore.Website.Code.Game.Gameplay;
 using StarBastardCore.Website.Code.Game.Gameplay.GameGeneration;
-using StarBastardCore.Website.Code.Game.PlayerData;
+using StarBastardCore.Website.Code.UserProfile;
 using StarBastardCore.Website.Models.Lobby;
 using WebMatrix.WebData;
 
@@ -28,7 +28,7 @@ namespace StarBastardCore.Website.Controllers
 
         public ActionResult Index()
         {
-            var myProfile = _storage.GetOrEmpty<ExtendedUserProfile>(WebSecurity.CurrentUserId);
+            var myProfile = _storage.GetOrEmpty<UserProfileData>(WebSecurity.CurrentUserId);
             return View(myProfile);
         }
 
@@ -69,8 +69,8 @@ namespace StarBastardCore.Website.Controllers
 
             _storage.Save(game);
 
-            var playerOneProfile = _storage.GetOrEmpty<ExtendedUserProfile>(WebSecurity.CurrentUserId);
-            var playerTwoProfile = _storage.GetOrEmpty<ExtendedUserProfile>(opponentId);
+            var playerOneProfile = _storage.GetOrEmpty<UserProfileData>(WebSecurity.CurrentUserId);
+            var playerTwoProfile = _storage.GetOrEmpty<UserProfileData>(opponentId);
 
             var activeGameReference = new ActiveGameReference
                 {

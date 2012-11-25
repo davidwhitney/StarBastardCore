@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AppSettingsWrapper.cs" />
+    <Compile Include="Code\CollectionExtensions.cs" />
     <Compile Include="Code\DataAccess\Db.cs" />
     <Compile Include="Code\DataAccess\Storage.cs" />
     <Compile Include="Code\Game\Gameplay\Actions\Build.cs" />
@@ -221,7 +222,6 @@
     <Compile Include="Code\Game\Gameplay\GameGeneration\SystemGenerator.cs" />
     <Compile Include="Code\Game\Gameworld\Units\IUnit.cs" />
     <Compile Include="Code\Game\Gameworld\Units\UnitBase.cs" />
-    <Compile Include="Code\Game\PlayerData\ExtendedUserProfile.cs" />
     <Compile Include="Code\ModelBinding\FromJsonModelBinder.cs" />
     <Compile Include="Code\UserProfile\GameInvite.cs" />
     <Compile Include="Code\UserProfile\UserProfileData.cs" />
