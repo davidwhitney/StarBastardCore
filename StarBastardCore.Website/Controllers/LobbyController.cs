@@ -57,8 +57,10 @@ namespace StarBastardCore.Website.Controllers
             var game = GameContext.Create(NamesRepository.RandomName())
                                     .WithSystems(_generator.Generate());
 
+            var opponent = _db.X.UserProfile.FindByUserId(opponentId);
+
             game.AddPlayer(new Player(WebSecurity.CurrentUserId, WebSecurity.CurrentUserName));
-            game.AddPlayer(new Player(opponentId, opponentId.ToString()));
+            game.AddPlayer(new Player(opponentId, opponent.UserName.ToString()));
 
             _gameRepository.Save(game);
 
