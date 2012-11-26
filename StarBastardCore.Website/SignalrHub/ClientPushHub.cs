@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 
@@ -10,25 +9,34 @@ namespace StarBastardCore.Website.SignalrHub
     public class ClientPushHub : Hub
     {
         private static readonly ClientRegistry Registry = new ClientRegistry();
-
-
+        
         public void RegisterForUpdates(Guid gameId)
         {
             Registry.ClientToGames.Add(Context.ConnectionId, gameId);
+            SendChatMessage(gameId, "System", "Player joined the chat.");
+        }
+
+        public void SendChatMessage(Guid gameId, string senderName, string message)
+        {
+            ForGame(gameId, null, eachClient => eachClient.updateChat(senderName, message));
         }
 
         public override System.Threading.Tasks.Task OnDisconnected()
         {
             Registry.ClientToGames.Remove(Context.ConnectionId);
-
             return base.OnDisconnected();
         }
 
         public void ForceClientRefresh(Guid gameId, IHubContext ctx = null)
         {
+            ForGame(gameId, ctx, eachClient => eachClient.refresh());
+        }
+
+        private static void ForGame(Guid gameId, IHubContext ctx, Action<dynamic> actionOnValidClient)
+        {
             foreach (var registration in Registry.ClientToGames.Where(x => x.Value == gameId))
             {
-                ctx.Clients().Client(registration.Key).refresh();
+                actionOnValidClient(ctx.Clients().Client(registration.Key));
             }
         }
     }

@@ -114,6 +114,17 @@
 <div style="clear:both;"></div>
 <div class="clearfix"></div>
 <div id="systemsSummary"></div>
+
+
+
+<div id="chatArea" class="row clearfix" style="padding-top: 25px;">
+    <h3>Chat</h3>
+    <div id="chatLines" class="span8">
+        <textarea id="chattext" style="width: 90%; height: 120px; overflow: scroll;"></textarea>
+        <input id="message" type="text" style="width: 90%"/>
+        <input id="sendChat" type="button" value="Send"/>
+    </div>
+</div>
             
 @{ var loggedInPlayerJson = JsonConvert.SerializeObject(Model.LoggedInPlayer); }
 @{ var gameBoardJson = JsonConvert.SerializeObject(Model.Gameboard); }
@@ -123,44 +134,66 @@
 
     <script type="text/javascript">
         $(function() {
-            
+
             var $playerStatusRenderer = new playerStatusRenderer();
             var $systemDetailsRenderer = new systemDetailsRenderer();
             var $gameboardRenderer = new gameBoardRenderer();
 
-            
+
             var gameboard = @(Html.Raw(gameBoardJson));
             var loggedInPlayer = @(Html.Raw(loggedInPlayerJson));
-            
+
             window.gameboard = gameboard.Systems;
             window.context = gameboard;
-            
+
             $gameboardRenderer.render(context, $("#systems"));
 
             var $playerControls = new playerControls(function(ctx) {
                 $systemDetailsRenderer.render(ctx, $playerControls.getSelectedSystem());
                 $playerStatusRenderer.render(context, loggedInPlayer);
             });
-            
+
             $playerControls.bindToUi();
-            
+
         });
     </script>
     
 
     <script src="/signalr/hubs" type="text/javascript"></script>
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             var socket = $.connection.clientPushHub;
-            
-            socket.client.refresh = function (data) {
+
+            socket.client.refresh = function(data) {
                 document.location.reload(true);
             };
-            
-            $.connection.hub.start(function () {
+
+            socket.client.updateChat = function(name, message) {
+                $('#chattext').append("\r\n");
+                $('#chattext').append(name + ": " + message);
+                $('#chattext').scrollTop($('#chattext')[0].scrollHeight);
+            };
+
+            $('#message').keypress(function(e) {
+                var code = (e.keyCode ? e.keyCode : e.which);
+                if (code == 13) {
+                    sendMessage();
+                }
+            });
+            $('#sendChat').click(function() {
+                sendMessage();
+            });
+
+            var sendMessage = function() {
+                socket.server.sendChatMessage("@Model.Gameboard.Id", "@Model.LoggedInPlayer.Name", $('#message').val());
+                $('#message').val('');
+                $('#message').focus();
+            };
+
+            $.connection.hub.start(function() {
                 socket.server.registerForUpdates("@Model.Gameboard.Id");
             });
-            
+
         });
     </script>
 }
