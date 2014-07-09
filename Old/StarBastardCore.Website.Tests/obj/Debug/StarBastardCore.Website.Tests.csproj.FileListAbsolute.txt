@@ -1,0 +1,5 @@
+C:\Dev\StarBastardCore\StarBastardCore.Website.Tests\bin\Debug\StarBastardCore.Website.Tests.dll
+C:\Dev\StarBastardCore\StarBastardCore.Website.Tests\bin\Debug\StarBastardCore.Website.Tests.pdb
+C:\Dev\StarBastardCore\StarBastardCore.Website.Tests\obj\Debug\StarBastardCore.Website.Tests.csprojResolveAssemblyReference.cache
+C:\Dev\StarBastardCore\StarBastardCore.Website.Tests\obj\Debug\StarBastardCore.Website.Tests.dll
+C:\Dev\StarBastardCore\StarBastardCore.Website.Tests\obj\Debug\StarBastardCore.Website.Tests.pdb
