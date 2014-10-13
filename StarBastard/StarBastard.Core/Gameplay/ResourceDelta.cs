@@ -1,10 +1,10 @@
 ﻿namespace StarBastard.Core.Gameplay
 {
-    public class PlayerResources
+    public class ResourceDelta
     {
-        public int Food { get; private set; }
-        public int Ore { get; private set; }
-        public int Tech { get; private set; }
+        public int Food { get; set; }
+        public int Ore { get; set; }
+        public int Tech { get; set; }
 
         public void AddOre(int amount)
         {

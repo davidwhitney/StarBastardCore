@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace StarBastard.Core.Systems
+namespace StarBastard.Core.Universe.Systems
 {
     public static class Names
     {
@@ -8376,7 +8373,7 @@ namespace StarBastard.Core.Systems
             "Le Gentil",
             "Le Poole",
             "Le Procope",
-            "Le\itos",
+            "Leitos",
             "Leach",
             "Leahmarie",
             "Leakey",

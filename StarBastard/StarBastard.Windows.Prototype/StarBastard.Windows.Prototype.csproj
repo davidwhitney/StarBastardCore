@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0AC4B9D2-F474-440E-B0DA-032AAC9DFCFF}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{27D952AF-3211-43BC-B77A-B4A952E281E5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StarBastard.Core</RootNamespace>
-    <AssemblyName>StarBastard.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>StarBastard.Windows.Prototype</RootNamespace>
+    <AssemblyName>StarBastard.Windows.Prototype</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -36,27 +38,52 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gameplay\GameContext.cs" />
-    <Compile Include="Gameplay\Player.cs" />
-    <Compile Include="Gameplay\Turn.cs" />
-    <Compile Include="Server\GameServer.cs" />
-    <Compile Include="Universe\Buildings\GroundStructure.cs" />
-    <Compile Include="Universe\Buildings\Spaceport.cs" />
-    <Compile Include="Universe\Buildings\Farm.cs" />
-    <Compile Include="Universe\Buildings\Mine.cs" />
-    <Compile Include="Universe\Buildings\ScienceLab.cs" />
-    <Compile Include="Gameplay\ResourceDelta.cs" />
+    <Compile Include="GameScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameScreen.Designer.cs">
+      <DependentUpon>GameScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Universe\Fleet\ConstructionStarship.cs" />
-    <Compile Include="Universe\ICanOrbit.cs" />
-    <Compile Include="Universe\Systems\GameBoard.cs" />
-    <Compile Include="Universe\Systems\Location.cs" />
-    <Compile Include="Universe\Systems\Names.cs" />
-    <Compile Include="Universe\Systems\Planet.cs" />
-    <Compile Include="Universe\Systems\SystemGenerator.cs" />
+    <Compile Include="Rendering\TileEnvelope.cs" />
+    <Compile Include="Rendering\WinformsRenderer.cs" />
+    <EmbeddedResource Include="GameScreen.resx">
+      <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StarBastard.Core\StarBastard.Core.csproj">
+      <Project>{0AC4B9D2-F474-440E-B0DA-032AAC9DFCFF}</Project>
+      <Name>StarBastard.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

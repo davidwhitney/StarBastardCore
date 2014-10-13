@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using StarBastard.Core.Universe.Fleet;
 
-namespace StarBastard.Core.Systems
+namespace StarBastard.Core.Universe.Systems
 {
     public class SystemGenerator
     {
-        public List<System> Build()
+        public GameBoard GenerateSystems()
         {
             var playerOneSystems = GenerateSystemsForOnePlayer(1);
             var playerTwoSystems = GenerateSystemsForOnePlayer(2);
 
-            var systems = new List<System>();
+            var systems = new Planet[74];
 
             var offset = 0;
             foreach (var value in playerOneSystems)
@@ -25,13 +27,39 @@ namespace StarBastard.Core.Systems
                 offset++;
             }
 
+            PositionSystemsIntoHex(systems);
 
-            return systems;
+            return new GameBoard(systems);
         }
 
-        public List<System> GenerateSystemsForOnePlayer(int playerNumber)
+        private static void PositionSystemsIntoHex(IList<Planet> systems)
         {
-            var systems = new List<System>();
+            var breaks = new List<int>
+            {
+                3, 8, 14, 21, 27, 32, 36
+            };
+
+            var boxesOnThisLine = 0;
+            var lineOffset = 0;
+            for (var index = 0; index < systems.Count; index++)
+            {
+                systems[index].Location = new Location(boxesOnThisLine, lineOffset);
+
+                if (breaks.Contains(index) || breaks.Contains(index - 37))
+                {
+                    lineOffset++;
+                    boxesOnThisLine = 0;
+                }
+                else
+                {
+                    boxesOnThisLine++;
+                }
+            }
+        }
+
+        public List<Planet> GenerateSystemsForOnePlayer(int playerNumber)
+        {
+            var systems = new Planet[37];
             var points = GenerateScoresForSetOfPlanets();
 
             var rng = new Random();
@@ -40,19 +68,19 @@ namespace StarBastard.Core.Systems
             for (var i = 0; i != 37; i++)
             {
                 var name = Names.Options[rng.Next(16455)];
-                var oneSystem = new System(name, playerNumber + "_" + (i + 1), points[i], playerNumber);
+                var oneSystem = new Planet(name, playerNumber + "_" + (i + 1), points[i], playerNumber);
                 systems[i] = oneSystem;
             }
 
             systems[18].Orbit.Add(new ConstructionStarship(playerNumber));
 
 
-            return systems;
+            return systems.ToList();
         }
 
         public List<int> GenerateScoresForSetOfPlanets()
         {
-            var points = new List<int>();
+            var points = new int[37];
             var totalPoints = 100;
 
             while (totalPoints > 0)
@@ -78,7 +106,7 @@ namespace StarBastard.Core.Systems
 
             if (points[18] == 0)
             {
-                for (int index = 0; index < points.Count; index++)
+                for (int index = 0; index < points.Length; index++)
                 {
                     var value = points[index];
                     
@@ -91,7 +119,7 @@ namespace StarBastard.Core.Systems
              
             }
 
-            return points;
+            return points.ToList();
         }
 
         public static void Shuffle<T>(IList<T> list)
