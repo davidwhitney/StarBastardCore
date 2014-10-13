@@ -6,8 +6,8 @@ namespace StarBastard.Windows.Prototype
 {
     public partial class GameScreen : Form
     {
-        private GameServer _server;
-        private WinformsRenderer _renderer;
+        private readonly GameServer _server;
+        private readonly WinformsRenderer _renderer;
 
         public GameScreen()
         {
@@ -15,14 +15,12 @@ namespace StarBastard.Windows.Prototype
 
             _server = new GameServer();
             _renderer = new WinformsRenderer();
-
+            _server.Changed += (sender, args) => _renderer.Render(args.CurrentState, panel1, label1);
         }
 
         private void newToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            _server.Initilize();
-            var state = _server.GetState();
-            _renderer.Render(state, panel1, label1);
+            _server.NewGame();
         }
     }
 }

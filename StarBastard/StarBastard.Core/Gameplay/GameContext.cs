@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using StarBastard.Core.Universe.Systems;
 
@@ -9,10 +8,9 @@ namespace StarBastard.Core.Gameplay
     {
         private readonly Action<GameContext> _render;
         private int currentRound = 0;
-        private int currentPlayerTurn = 0;
-        private Turn thisTurn = null;
-        private Player currentPlayer = null;
-        private object updateUiFunction;
+        private int _currentPlayerTurn = 0;
+        private Turn _thisTurn = null;
+        private Player _currentPlayer = null;
 
         public Dictionary<int, Player> Players { get; set; }
         public GameBoard Systems { get; private set; }
@@ -31,32 +29,32 @@ namespace StarBastard.Core.Gameplay
 
         public void StartTurn()
         {
-            if (thisTurn != null)
+            if (_thisTurn != null)
             {
-                thisTurn.commitTurn();
+                _thisTurn.commitTurn();
             }
 
             //start next turn
-            if (currentPlayerTurn == 1)
+            if (_currentPlayerTurn == 1)
             {
-                currentPlayerTurn = 2;
+                _currentPlayerTurn = 2;
             }
-            else if (currentPlayerTurn == 2)
+            else if (_currentPlayerTurn == 2)
             {
-                currentPlayerTurn = 1;
+                _currentPlayerTurn = 1;
                 currentRound++;
             }
 
-            if (currentPlayerTurn == 0)
+            if (_currentPlayerTurn == 0)
             {
-                currentPlayerTurn = 1;
+                _currentPlayerTurn = 1;
                 currentRound = 1;
             }
 
-            currentPlayer = Players[currentPlayerTurn];
+            _currentPlayer = Players[_currentPlayerTurn];
 
-            thisTurn = new Turn(currentPlayer);
-            thisTurn.tick(this);
+            _thisTurn = new Turn(_currentPlayer);
+            _thisTurn.tick(this);
 
 
             _render(this);
