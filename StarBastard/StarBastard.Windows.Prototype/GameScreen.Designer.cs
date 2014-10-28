@@ -31,9 +31,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.renderTarget = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.infoPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
+            this.renderTarget.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -61,13 +63,14 @@
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
-            // panel1
+            // renderTarget
             // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(12, 27);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(853, 724);
-            this.panel1.TabIndex = 1;
+            this.renderTarget.BackColor = System.Drawing.Color.Black;
+            this.renderTarget.Controls.Add(this.infoPanel);
+            this.renderTarget.Location = new System.Drawing.Point(12, 27);
+            this.renderTarget.Name = "renderTarget";
+            this.renderTarget.Size = new System.Drawing.Size(853, 724);
+            this.renderTarget.TabIndex = 1;
             // 
             // label1
             // 
@@ -78,19 +81,30 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "label1";
             // 
+            // infoPanel
+            // 
+            this.infoPanel.BackColor = System.Drawing.Color.Transparent;
+            this.infoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.infoPanel.Location = new System.Drawing.Point(585, 67);
+            this.infoPanel.Name = "infoPanel";
+            this.infoPanel.Size = new System.Drawing.Size(240, 242);
+            this.infoPanel.TabIndex = 0;
+            this.infoPanel.Visible = false;
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 784);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.renderTarget);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GameScreen";
             this.Text = "StarBastard";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.renderTarget.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,8 +115,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem newGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel renderTarget;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel infoPanel;
     }
 }
 

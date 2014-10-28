@@ -52,7 +52,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\IRender.cs" />
     <Compile Include="Rendering\TileEnvelope.cs" />
+    <Compile Include="Rendering\GameBoardRenderer.cs" />
     <Compile Include="Rendering\WinformsRenderer.cs" />
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
