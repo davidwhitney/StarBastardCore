@@ -4,7 +4,7 @@ using StarBastard.Core.Universe.Systems;
 
 namespace StarBastard.Core.Server
 {
-    public class GameServer
+    public class GameServer : IGameServer
     {
         private GameContext _ctx;
         
@@ -13,30 +13,20 @@ namespace StarBastard.Core.Server
             var gen = new SystemGenerator();
             var systems = gen.GenerateSystems();
             
-            _ctx = new GameContext(systems, context =>
-            {
-                Debug.WriteLine("Render called due to change");
-                OnChanged(new OnChangeArgs {CurrentState = systems});
-            });
+            _ctx = new GameContext(systems, context => Debug.WriteLine("State changed"));
 
             _ctx.StartTurn();
         }
 
-        public event OnChange Changed;
-
-        protected virtual void OnChanged(OnChangeArgs args)
+        public GameBoard GetCurrentState()
         {
-            if (Changed != null)
-            {
-                Changed(this, args);
-            }
+            return _ctx.Systems;
         }
     }
 
-    public delegate void OnChange(object sender, OnChangeArgs args);
-
-    public class OnChangeArgs
+    public interface IGameServer
     {
-        public GameBoard CurrentState { get; set; }
+        GameBoard GetCurrentState();
+        void NewGame();
     }
 }

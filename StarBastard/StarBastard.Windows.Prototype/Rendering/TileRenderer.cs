@@ -4,10 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using StarBastard.Core.Universe.Systems;
+using StarBastard.Windows.Prototype.GameFlow;
 
 namespace StarBastard.Windows.Prototype.Rendering
 {
-    public class GameBoardRenderer : IRender<GameBoard>
+    public class TileRenderer : IRender<GameBoardViewModel>
     {
         private const int BorderOffset = 50;
         private const int PieceSize = 45;
@@ -18,18 +19,18 @@ namespace StarBastard.Windows.Prototype.Rendering
 
         private readonly Dictionary<Panel, TileEnvelope> _lookup;
 
-        public GameBoardRenderer()
+        public TileRenderer()
         {
             OnGameboardInput = (target, sender, args) => { };
             _lookup = new Dictionary<Panel, TileEnvelope>();
         }
 
-        public void Render(GameBoard gameBoard, Panel targetPanel)
+        public void Render(GameBoardViewModel viewModel, Panel targetPanel)
         {
-            foreach (var planet in gameBoard)
+            foreach (var planet in viewModel.Gameboard)
             {
                 var thisLocation = new TileEnvelope(planet.Location.X, planet.Location.Y, planet);
-                var drawPosX = (planet.Location.X * ScaledPieceSize) + BorderOffset + CalculateHexOffset(gameBoard, planet);
+                var drawPosX = (planet.Location.X * ScaledPieceSize) + BorderOffset + CalculateHexOffset(viewModel.Gameboard, planet);
                 var drawPosY = (planet.Location.Y * ScaledPieceSize) + BorderOffset;
 
                 Panel panel;

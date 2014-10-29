@@ -1,32 +1,32 @@
 ﻿using System.Windows.Forms;
 using StarBastard.Core.Server;
-using StarBastard.Core.Universe.Systems;
+using StarBastard.Windows.Prototype.GameFlow;
+using StarBastard.Windows.Prototype.InputHandling;
 using StarBastard.Windows.Prototype.Rendering;
 
 namespace StarBastard.Windows.Prototype
 {
     public partial class GameScreen : Form
     {
-        private readonly GameServer _server;
-        private readonly IRender<GameBoard> _renderer;
+        private readonly IRender<GameBoardViewModel> _renderer;
+        private readonly IGameboardInputRouter _inputRouter;
+
+        private readonly GameController _controller;
 
         public GameScreen()
         {
             InitializeComponent();
 
-            _server = new GameServer();
+            _controller = new GameController(new GameServer());
             _renderer = new WinformsRenderer();
-            _server.Changed += (sender, args) => _renderer.Render(args.CurrentState, renderTarget);
+            _inputRouter = new WinformsInputRouter();
+            _renderer.OnGameboardInput = _inputRouter.HandleGameboardInteraction;
 
-            _renderer.OnGameboardInput = (target, sender, args) =>
+            newToolStripMenuItem.Click += (sender, args) =>
             {
-
+                var viewModel = _controller.StartNewGame();
+                _renderer.Render(viewModel, renderTarget);
             };
-        }
-
-        private void newToolStripMenuItem_Click(object sender, System.EventArgs e)
-        {
-            _server.NewGame();
         }
     }
 }

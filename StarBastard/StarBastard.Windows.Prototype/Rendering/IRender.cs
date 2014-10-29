@@ -6,6 +6,6 @@ namespace StarBastard.Windows.Prototype.Rendering
     public interface IRender<in TClass>
     {
         Action<object, object, EventArgs> OnGameboardInput { get; set; }
-        void Render(TClass instance, Panel uiRoot);
+        void Render(TClass viewModel, Panel uiRoot);
     }
 }
